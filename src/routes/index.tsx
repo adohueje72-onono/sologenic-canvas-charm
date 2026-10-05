@@ -109,7 +109,7 @@ function Index() {
 
       <div className="relative mx-auto grid max-w-[1220px] gap-12 px-5 pb-16 pt-10 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:pt-12">
         <div className="pointer-events-none absolute -bottom-48 -left-56 h-[520px] w-[700px] opacity-60 bridge-mesh" />
-        <section className="relative z-10 pt-1">
+        <section className="relative z-10 min-w-0 pt-1">
           <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-[54px]">Convert to TX</h1>
           <p className="mt-7 max-w-sm text-sm leading-6 text-muted-foreground">Convert your existing tokens to the new upgraded chain in one simple step</p>
           <div className="mt-3 flex flex-col items-start gap-2 text-sm">
@@ -118,7 +118,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="bridge" className="relative z-10 rounded-lg border border-border bg-card p-5 shadow-2xl shadow-background/40 sm:p-7">
+        <section id="bridge" className="relative z-10 min-w-0 rounded-lg border border-border bg-card p-5 shadow-2xl shadow-background/40 sm:p-7">
           <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
             <Chain side="origin" label="Origin" name="XRP Ledger" connected={connected.origin} validated={validated.origin} onConnect={connect} onValidate={validate} />
             <div className="mt-1 hidden w-36 items-center sm:flex">
