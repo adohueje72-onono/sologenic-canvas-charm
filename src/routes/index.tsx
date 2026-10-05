@@ -3,6 +3,7 @@ import {
   ArrowUpRight,
   Check,
   ChevronDown,
+  ChevronRight,
   CircleHelp,
   Globe,
   Menu,
@@ -25,6 +26,15 @@ import crossmarkLogo from "@/assets/crossmark-logo.png.asset.json";
 import cosmostationLogo from "@/assets/cosmostation-logo.png.asset.json";
 import keplrLogo from "@/assets/keplr-logo.png.asset.json";
 import leapLogo from "@/assets/leap-logo.png.asset.json";
+import vwSologenic from "@/assets/vw-sologenic.png";
+import vwXrp from "@/assets/vw-xrp.png";
+import vwKeplr from "@/assets/vw-keplr.png";
+import vwCosmostation from "@/assets/vw-cosmostation.png";
+import vwLedger from "@/assets/vw-ledger.png";
+import vwMetamask from "@/assets/vw-metamask.png";
+import vwCoinbase from "@/assets/vw-coinbase.png";
+import vwRabby from "@/assets/vw-rabby.png";
+import vwZerion from "@/assets/vw-zerion.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
