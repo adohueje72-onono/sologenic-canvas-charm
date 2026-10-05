@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import txLogo from "@/assets/tx-logo.png.asset.json";
 import soloLogo from "@/assets/sologenic-logo.png.asset.json";
 import coreLogo from "@/assets/core-logo.png.asset.json";
+import xrpLedgerLogo from "@/assets/xrp-ledger-logo.png.asset.json";
 import xrpLogo from "@/assets/xrp-logo.png";
 import ledgerLogo from "@/assets/ledger-logo.png.asset.json";
 import dcentLogo from "@/assets/dcent-logo.png.asset.json";
