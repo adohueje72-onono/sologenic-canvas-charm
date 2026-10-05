@@ -114,7 +114,7 @@ function Index() {
   ];
 
   const walletOptions = walletPicker === "destination" ? [
-    { name: "Cosmostation", icon: <img src={cosmostationLogo.url} alt="Cosmostation" className="size-10 rounded-lg object-cover" /> },
+    { name: "Cosmostation", icon: <img src={cosmostationReal.url} alt="Cosmostation" className="size-10 rounded-lg object-cover" /> },
     { name: "Keplr", icon: <img src={keplrReal.url} alt="Keplr" className="size-10 rounded-lg object-cover" /> },
     { name: "Leap", icon: <img src={leapLogo.url} alt="Leap" className="size-10 rounded-lg object-cover" /> },
   ] : [
