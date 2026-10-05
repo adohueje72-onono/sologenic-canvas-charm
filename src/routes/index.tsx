@@ -10,6 +10,7 @@ import {
   Sun,
   Wallet,
   Wifi,
+  X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,10 @@ import txLogo from "@/assets/tx-logo.png.asset.json";
 import soloLogo from "@/assets/sologenic-logo.png.asset.json";
 import coreLogo from "@/assets/core-logo.png.asset.json";
 import xrpLogo from "@/assets/xrp-logo.png";
+import walletLedger from "@/assets/wallet-ledger.png";
+import walletDcent from "@/assets/wallet-dcent.png";
+import walletXaman from "@/assets/wallet-xaman.png";
+import walletCrossmark from "@/assets/wallet-crossmark.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -63,7 +68,7 @@ function ChainIcon({ tx = false }: { tx?: boolean }) {
 }
 
 function Index() {
-  const [connected, setConnected] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
+  const [walletPicker, setWalletPicker] = useState<WalletSide | null>(null);
   const [validated, setValidated] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("English");
@@ -73,7 +78,11 @@ function Index() {
     document.documentElement.classList.toggle("light", !dark);
   }, [dark]);
 
-  const connect = (side: WalletSide) => setConnected((state) => ({ ...state, [side]: true }));
+  const connect = (side: WalletSide) => setWalletPicker(side);
+  const chooseWallet = () => {
+    if (walletPicker) setConnected((state) => ({ ...state, [walletPicker]: true }));
+    setWalletPicker(null);
+  };
   const validate = (side: WalletSide) => setValidated((state) => ({ ...state, [side]: true }));
 
   return (
