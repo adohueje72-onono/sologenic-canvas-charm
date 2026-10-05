@@ -29,7 +29,7 @@ import leapLogo from "@/assets/leap-logo.png.asset.json";
 import vwSologenic from "@/assets/vw-sologenic.png";
 import vwXrp from "@/assets/vw-xrp.png";
 import vwMetamask from "@/assets/vw-metamask.png";
-import vwCoinbase from "@/assets/vw-coinbase.png";
+import coinbaseReal from "@/assets/coinbase-real.png.asset.json";
 import vwRabby from "@/assets/vw-rabby.png";
 import vwZerion from "@/assets/vw-zerion.png";
 
