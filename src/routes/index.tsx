@@ -5,6 +5,7 @@ import {
   ChevronDown,
   CircleHelp,
   Globe,
+  Menu,
   Moon,
   Sun,
   Wallet,
@@ -88,10 +89,9 @@ function Index() {
           </nav>
           <div className="ml-auto flex items-center gap-3">
             <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <Wifi className="ml-2 size-3.5 rotate-45 text-success" /><ChevronDown className="ml-1 size-3" /></Button>
-            <Button variant="ghost" className="size-10 px-0" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
-            <Button onClick={() => connect("origin")} size="icon" className="sm:hidden" aria-label="Connect Wallet"><Wallet className="size-4" /></Button>
-            <Button onClick={() => connect("origin")} className="hidden sm:inline-flex"><Wallet className="mr-2 size-4" />Connect Wallet</Button>
-            <div className="relative">
+            <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
+            <Button onClick={() => connect("origin")} className="h-10 px-4 text-sm sm:h-11 sm:px-5">Connect Wallet</Button>
+            <div className="relative hidden sm:block">
               <Button variant="ghost" className="size-10 px-0" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
               {langOpen && (
                 <div className="absolute right-0 top-full z-50 mt-3 w-40 overflow-hidden rounded-xl border border-border bg-card py-2 shadow-2xl shadow-background/60">
