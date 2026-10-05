@@ -88,6 +88,15 @@ function Index() {
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("English");
   const [dark, setDark] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navItems = [
+    { label: "Trade", href: "#trade" },
+    { label: "NFTs", href: "#nfts" },
+    { label: "Bridge", href: "#bridge", active: true },
+    { label: "Token Hub", href: "#tokens", dropdown: true },
+    { label: "Swap", href: "#swap", dropdown: true },
+    { label: "Fiat", href: "#fiat", dropdown: true },
+  ];
 
   useEffect(() => {
     document.documentElement.classList.toggle("light", !dark);
@@ -133,16 +142,13 @@ function Index() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
-      <header className="border-b border-border/60 bg-background/95">
+      <header className="relative border-b border-border/60 bg-background/95">
         <div className="mx-auto flex h-[72px] max-w-[1440px] items-center px-5 lg:px-8">
           <BrandMark />
           <nav className="ml-12 hidden items-center gap-10 text-sm text-muted-foreground lg:flex">
-            <a className="transition-colors hover:text-foreground" href="#trade">Trade</a>
-            <a className="transition-colors hover:text-foreground" href="#nfts">NFTs</a>
-            <a className="text-foreground" href="#bridge">Bridge</a>
-            <a className="flex items-center gap-1 transition-colors hover:text-foreground" href="#tokens">Token Hub <ChevronDown className="size-3" /></a>
-            <a className="flex items-center gap-1 transition-colors hover:text-foreground" href="#swap">Swap <ChevronDown className="size-3" /></a>
-            <a className="flex items-center gap-1 transition-colors hover:text-foreground" href="#fiat">Fiat <ChevronDown className="size-3" /></a>
+            {navItems.map((item) => (
+              <a key={item.label} className={`flex items-center gap-1 transition-colors hover:text-foreground ${item.active ? "text-foreground" : ""}`} href={item.href}>{item.label}{item.dropdown && <ChevronDown className="size-3" />}</a>
+            ))}
           </nav>
           <div className="ml-auto flex items-center gap-3">
             <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <Wifi className="ml-2 size-3.5 rotate-45 text-success" /><ChevronDown className="ml-1 size-3" /></Button>
@@ -161,9 +167,25 @@ function Index() {
                 </div>
               )}
             </div>
-            <Button variant="ghost" className="size-10 px-0 text-primary sm:hidden" aria-label="Menu"><Menu className="size-6" /></Button>
+            <Button variant="ghost" className="size-10 px-0 text-primary sm:hidden" aria-label="Menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}</Button>
           </div>
         </div>
+        <nav className="mx-auto hidden max-w-[1440px] items-center gap-8 overflow-x-auto border-t border-border/60 px-5 py-3 text-sm text-muted-foreground sm:flex lg:hidden">
+          {navItems.map((item) => (
+            <a key={item.label} className={`flex shrink-0 items-center gap-1 transition-colors hover:text-foreground ${item.active ? "text-foreground" : ""}`} href={item.href}>{item.label}{item.dropdown && <ChevronDown className="size-3" />}</a>
+          ))}
+        </nav>
+        {menuOpen && (
+          <nav className="absolute inset-x-0 top-full z-40 border-b border-border bg-card px-5 py-3 shadow-2xl shadow-background/60 sm:hidden">
+            {navItems.map((item) => (
+              <a key={item.label} onClick={() => setMenuOpen(false)} className={`flex items-center justify-between border-b border-border/50 py-3 text-base last:border-0 ${item.active ? "text-foreground" : "text-muted-foreground"}`} href={item.href}>{item.label}{item.dropdown && <ChevronDown className="size-4" />}</a>
+            ))}
+            <div className="flex items-center gap-3 pt-3">
+              <Button variant="outline" className="rounded-full px-5">Mainnet <Wifi className="ml-2 size-3.5 rotate-45 text-success" /></Button>
+              <Button variant="ghost" className="size-10 px-0" aria-label="Toggle theme" onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
+            </div>
+          </nav>
+        )}
       </header>
 
       <div className="relative mx-auto grid max-w-[1220px] gap-12 px-5 pb-16 pt-10 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:pt-12">
