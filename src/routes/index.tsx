@@ -23,16 +23,15 @@ import ledgerLogo from "@/assets/ledger-logo.png.asset.json";
 import dcentLogo from "@/assets/dcent-logo.png.asset.json";
 import xamanLogo from "@/assets/xaman-logo.png.asset.json";
 import crossmarkLogo from "@/assets/crossmark-logo.png.asset.json";
-import cosmostationLogo from "@/assets/cosmostation-logo.png.asset.json";
+import keplrReal from "@/assets/keplr-real.png.asset.json";
+import cosmostationReal from "@/assets/cosmostation-real.png.asset.json";
 import leapLogo from "@/assets/leap-logo.png.asset.json";
 import vwSologenic from "@/assets/vw-sologenic.png";
 import vwXrp from "@/assets/vw-xrp.png";
-import keplrReal from "@/assets/keplr-real.png.asset.json";
-import vwCosmostation from "@/assets/vw-cosmostation.png";
 import vwMetamask from "@/assets/vw-metamask.png";
-import vwCoinbase from "@/assets/vw-coinbase.png";
+import coinbaseReal from "@/assets/coinbase-real.png.asset.json";
 import vwRabby from "@/assets/vw-rabby.png";
-import vwZerion from "@/assets/vw-zerion.png";
+import zerionReal from "@/assets/zerion-real.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -106,16 +105,16 @@ function Index() {
     { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
     { name: "XRP Wallet", desc: "Connect with an XRP Ledger wallet", icon: vwXrp },
     { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: keplrReal.url },
-    { name: "Cosmostation", desc: "Connect using Cosmostation", icon: vwCosmostation },
+    { name: "Cosmostation", desc: "Connect using Cosmostation", icon: cosmostationReal.url },
     { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: ledgerLogo.url },
     { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
-    { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: vwCoinbase },
+    { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: coinbaseReal.url },
     { name: "Rabby Wallet", desc: "Connect using the Rabby EVM wallet", icon: vwRabby },
-    { name: "Zerion Wallet", desc: "Connect using Zerion Wallet", icon: vwZerion },
+    { name: "Zerion Wallet", desc: "Connect using Zerion Wallet", icon: zerionReal.url },
   ];
 
   const walletOptions = walletPicker === "destination" ? [
-    { name: "Cosmostation", icon: <img src={cosmostationLogo.url} alt="Cosmostation" className="size-10 rounded-lg object-cover" /> },
+    { name: "Cosmostation", icon: <img src={cosmostationReal.url} alt="Cosmostation" className="size-10 rounded-lg object-cover" /> },
     { name: "Keplr", icon: <img src={keplrReal.url} alt="Keplr" className="size-10 rounded-lg object-cover" /> },
     { name: "Leap", icon: <img src={leapLogo.url} alt="Leap" className="size-10 rounded-lg object-cover" /> },
   ] : [
