@@ -183,10 +183,10 @@ function Index() {
         )}
       </header>
 
-      <div className="relative mx-auto grid max-w-[1220px] gap-12 px-5 pb-16 pt-10 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:pt-12">
+      <div className="relative mx-auto grid max-w-[1220px] gap-12 px-5 pb-16 pt-10 md:grid-cols-[0.78fr_1.22fr] md:px-8 md:pt-12">
         <div className="pointer-events-none absolute -bottom-48 -left-56 h-[520px] w-[700px] opacity-60 bridge-mesh" />
         <section className="relative z-10 min-w-0 pt-1">
-          <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-[54px]">Convert to TX</h1>
+          <h1 className="text-4xl font-semibold leading-tight sm:text-5xl md:text-[54px]">Convert to TX</h1>
           <p className="mt-7 max-w-sm text-sm leading-6 text-muted-foreground">Convert your existing tokens to the new upgraded chain in one simple step</p>
           <div className="mt-3 flex flex-col items-start gap-2 text-sm">
             <a href="https://tx.org/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-primary hover:underline"><ArrowUpRight className="size-4" />Learn more about TX</a>
