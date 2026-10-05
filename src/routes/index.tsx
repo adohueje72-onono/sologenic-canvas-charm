@@ -7,7 +7,6 @@ import {
   Menu,
   Moon,
   Wallet,
-  X,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -39,12 +38,21 @@ function BrandMark() {
   );
 }
 
+function XrpMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 38.28 39.16" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M34.12 2.62h6.15L26.19 16.79a8.71 8.71 0 0 1-12.31 0L-.19 2.62H5.96L17.1 13.79a4.36 4.36 0 0 0 6.16 0z" />
+      <path d="M5.91 36.53H-.24L13.88 22.4a8.71 8.71 0 0 1 12.31 0l14.12 14.13h-6.15L22.97 25.36a4.36 4.36 0 0 0-6.15 0z" />
+    </svg>
+  );
+}
+
 function ChainIcon({ tx = false }: { tx?: boolean }) {
   return tx ? (
     <img src={txLogo.url} alt="TX" className="size-14 rounded-xl object-cover" />
   ) : (
-    <span className="grid size-14 place-items-center rounded-xl bg-foreground text-background">
-      <X className="size-8 stroke-[1.5]" />
+    <span className="grid size-14 place-items-center rounded-xl bg-foreground">
+      <XrpMark className="size-8 text-background" />
     </span>
   );
 }
@@ -102,7 +110,7 @@ function Index() {
           <div className="mt-12 grid grid-cols-1 gap-2 sm:grid-cols-3">
             {["SOLO", "XRP", "CORE"].map((token, index) => (
               <div key={token} className="h-24 rounded-md bg-muted p-3">
-                <div className="flex items-center justify-between">{index === 0 ? <img src={soloLogo.url} alt="SOLO" className="size-7 rounded-full" /> : <span className="grid size-7 place-items-center rounded-full bg-secondary text-xs font-bold text-muted-foreground">{index === 1 ? "×" : "C"}</span>}<span className="text-xs text-primary/65">Max</span></div>
+                <div className="flex items-center justify-between">{index === 0 ? <img src={soloLogo.url} alt="SOLO" className="size-7 rounded-full" /> : <span className={`grid size-7 place-items-center rounded-full ${index === 1 ? "bg-foreground" : "bg-secondary"}`}>{index === 1 ? <XrpMark className="size-3.5 text-background" /> : <span className="text-xs font-bold text-muted-foreground">C</span>}</span>}<span className="text-xs text-primary/65">Max</span></div>
                 <div className="mt-4 text-sm text-muted-foreground">--</div>
               </div>
             ))}
