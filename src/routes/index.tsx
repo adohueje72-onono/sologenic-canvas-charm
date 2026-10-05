@@ -28,8 +28,8 @@ import keplrLogo from "@/assets/keplr-logo.png.asset.json";
 import leapLogo from "@/assets/leap-logo.png.asset.json";
 import vwSologenic from "@/assets/vw-sologenic.png";
 import vwXrp from "@/assets/vw-xrp.png";
-  import keplrReal from "@/assets/keplr-real.png.asset.json";
-  import vwCosmostation from "@/assets/vw-cosmostation.png";
+import keplrReal from "@/assets/keplr-real.png.asset.json";
+import vwCosmostation from "@/assets/vw-cosmostation.png";
 import vwMetamask from "@/assets/vw-metamask.png";
 import vwCoinbase from "@/assets/vw-coinbase.png";
 import vwRabby from "@/assets/vw-rabby.png";
@@ -106,9 +106,9 @@ function Index() {
   const validateWallets = [
     { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
     { name: "XRP Wallet", desc: "Connect with an XRP Ledger wallet", icon: vwXrp },
-    { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: vwKeplr },
+    { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: <img src={keplrReal.url} alt="Keplr" className="size-10 rounded-lg object-cover" /> },
     { name: "Cosmostation", desc: "Connect using Cosmostation", icon: vwCosmostation },
-    { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: vwLedger },
+    { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: <img src={ledgerLogo.url} alt="Ledger" className="size-10 rounded-lg object-cover" /> },
     { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
     { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: vwCoinbase },
     { name: "Rabby Wallet", desc: "Connect using the Rabby EVM wallet", icon: vwRabby },
