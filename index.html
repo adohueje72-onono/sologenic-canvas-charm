@@ -1,0 +1,30 @@
+<form id="myForm">
+    <input type="text" name="name" placeholder="Your name" required />
+    <input type="email" name="email" placeholder="Your email" required />
+    <button type="submit">Submit</button>
+  </form>
+  
+  <script>
+    document.getElementById("myForm").addEventListener("submit", async (e) => {
+      e.preventDefault(); // stop the page from reloading
+  
+      const formData = Object.fromEntries(new FormData(e.target));
+  
+      try {
+        const res = await fetch("https://resendsolo.netlify.app/.netlify/functions/receive", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+  
+        if (res.ok) {
+          alert("Submitted successfully!");
+          e.target.reset(); // clear the form
+        } else {
+          alert("Server error — try again.");
+        }
+      } catch (err) {
+        alert("Network error — check your connection.");
+      }
+    });
+  </script>
