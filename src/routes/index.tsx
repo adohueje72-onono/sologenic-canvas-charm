@@ -1,24 +1,146 @@
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  CircleHelp,
+  Globe2,
+  Menu,
+  Moon,
+  Wallet,
+  X,
+} from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Convert to TX | Sologenic DEX" },
+      { name: "description", content: "Convert existing tokens from XRP Ledger to the upgraded TX chain." },
+      { property: "og:title", content: "Convert to TX | Sologenic DEX" },
+      { property: "og:description", content: "Convert existing tokens from XRP Ledger to the upgraded TX chain." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+type WalletSide = "origin" | "destination";
+
+function BrandMark() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <span className="flex items-center gap-2.5 font-semibold text-foreground">
+      <span className="grid size-6 place-items-center rounded-full bg-foreground text-xs font-bold text-background">S</span>
+      <span>sologenic <span className="font-normal text-primary">DEX</span></span>
+    </span>
+  );
+}
+
+function ChainIcon({ tx = false }: { tx?: boolean }) {
+  return tx ? (
+    <span className="grid size-14 place-items-center rounded-xl bg-lime text-2xl font-bold text-lime-foreground">t×</span>
+  ) : (
+    <span className="grid size-14 place-items-center rounded-xl bg-foreground text-background">
+      <X className="size-8 stroke-[1.5]" />
+    </span>
+  );
+}
+
+function Index() {
+  const [connected, setConnected] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
+  const [validated, setValidated] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
+
+  const connect = (side: WalletSide) => setConnected((state) => ({ ...state, [side]: true }));
+  const validate = (side: WalletSide) => setValidated((state) => ({ ...state, [side]: true }));
+
+  return (
+    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+      <header className="border-b border-border/60 bg-background/95">
+        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center px-5 lg:px-8">
+          <BrandMark />
+          <nav className="ml-12 hidden items-center gap-10 text-sm text-muted-foreground lg:flex">
+            <a className="transition-colors hover:text-foreground" href="#trade">Trade</a>
+            <a className="transition-colors hover:text-foreground" href="#nfts">NFTs</a>
+            <a className="text-foreground" href="#bridge">Bridge</a>
+            <a className="flex items-center gap-1 transition-colors hover:text-foreground" href="#tokens">Token Hub <ChevronDown className="size-3" /></a>
+            <a className="flex items-center gap-1 transition-colors hover:text-foreground" href="#swap">Swap <ChevronDown className="size-3" /></a>
+            <a className="flex items-center gap-1 transition-colors hover:text-foreground" href="#fiat">Fiat <ChevronDown className="size-3" /></a>
+          </nav>
+          <div className="ml-auto flex items-center gap-3">
+            <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <span className="ml-2 text-success">◈</span><ChevronDown className="ml-1 size-3" /></Button>
+            <Button onClick={() => connect("origin")} className="hidden sm:inline-flex"><Wallet className="mr-2 size-4" />Connect Wallet</Button>
+            <Button variant="ghost" className="size-10 px-0" aria-label="Language"><Globe2 className="size-5" /></Button>
+            <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label="Theme"><Moon className="size-5" /></Button>
+            <Button variant="ghost" className="size-10 px-0 lg:hidden" aria-label="Menu"><Menu className="size-5" /></Button>
+          </div>
+        </div>
+      </header>
+
+      <div className="relative mx-auto grid max-w-[1220px] gap-12 px-5 pb-16 pt-10 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:pt-12">
+        <div className="pointer-events-none absolute -bottom-48 -left-56 h-[520px] w-[700px] opacity-60 bridge-mesh" />
+        <section className="relative z-10 pt-1">
+          <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-[54px]">Convert to TX</h1>
+          <p className="mt-7 max-w-sm text-sm leading-6 text-muted-foreground">Convert your existing tokens to the new upgraded chain in one simple step</p>
+          <div className="mt-3 flex flex-col items-start gap-2 text-sm">
+            <a href="#learn" className="inline-flex items-center gap-1.5 text-primary hover:underline"><ArrowUpRight className="size-4" />Learn more about TX</a>
+            <a href="#details" className="inline-flex items-center gap-1.5 text-primary hover:underline"><ArrowUpRight className="size-4" />Read conversion details</a>
+          </div>
+        </section>
+
+        <section id="bridge" className="relative z-10 rounded-lg border border-border bg-card p-5 shadow-2xl shadow-background/40 sm:p-7">
+          <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
+            <Chain side="origin" label="Origin" name="XRP Ledger" connected={connected.origin} validated={validated.origin} onConnect={connect} onValidate={validate} />
+            <div className="mt-1 hidden w-36 items-center sm:flex">
+              <span className="h-px flex-1 bg-primary/45" /><span className="mx-1 h-3 w-10 rounded-[50%] border-t border-primary/70" /><span className="h-px flex-1 bg-primary/45" />
+            </div>
+            <Chain side="destination" label="Destination" name="TX" tx connected={connected.destination} validated={validated.destination} onConnect={connect} onValidate={validate} />
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-2 sm:grid-cols-3">
+            {["SOLO", "XRP", "CORE"].map((token, index) => (
+              <div key={token} className="h-24 rounded-md bg-muted p-3">
+                <div className="flex items-center justify-between"><span className="grid size-7 place-items-center rounded-full bg-secondary text-xs font-bold text-muted-foreground">{index === 0 ? "S" : index === 1 ? "×" : "C"}</span><span className="text-xs text-primary/65">Max</span></div>
+                <div className="mt-4 text-sm text-muted-foreground">--</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-7">
+            <label className="mb-2 block text-xs text-muted-foreground">Destination Address</label>
+            <div className="flex min-h-16 items-center rounded-md border border-border bg-secondary/45 px-4">
+              <span className="mr-4 grid size-7 shrink-0 place-items-center rounded-md bg-lime text-xs font-bold text-lime-foreground">t×</span>
+              <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">Destination wallet address</span>
+              <Button variant="secondary" className="ml-3 shrink-0" onClick={() => connect("destination")}>{connected.destination ? "Connected" : "Connect Wallet"}</Button>
+            </div>
+          </div>
+
+          <dl className="mt-8 space-y-3 text-sm">
+            <InfoRow label="Estimated Time" value="2–3 minutes" />
+            <InfoRow label="Min Amount" value="1 TX" />
+            <InfoRow label="You Will Receive" value="0 TX" />
+          </dl>
+          <Button className="mt-8 h-12 w-full" onClick={() => connect("origin")}><Wallet className="mr-2 size-4" />{connected.origin ? "Wallet Connected" : "Connect Wallet"}</Button>
+        </section>
+      </div>
+    </main>
+  );
+}
+
+function Chain({ side, label, name, tx = false, connected, validated, onConnect, onValidate }: { side: WalletSide; label: string; name: string; tx?: boolean; connected: boolean; validated: boolean; onConnect: (side: WalletSide) => void; onValidate: (side: WalletSide) => void }) {
+  return (
+    <div className="flex min-w-0 flex-col items-center text-center">
+      <span className="mb-6 text-xs text-muted-foreground">{label}</span>
+      <div className="relative"><div className="absolute -inset-8 rounded-full border border-border" /><ChainIcon tx={tx} /></div>
+      <strong className="mt-4 text-sm font-medium">{name}</strong>
+      <div className="mt-4 flex justify-center gap-1.5 sm:gap-2">
+        <Button variant="secondary" size="sm" className="px-2 text-xs sm:px-3 sm:text-sm" onClick={() => onConnect(side)}>{connected ? "Connected" : "Connect Wallet"}</Button>
+        <Button variant="outline" size="sm" className="px-2 text-xs sm:px-3 sm:text-sm" onClick={() => onValidate(side)}>{validated ? "Validated" : "Validate"}</Button>
+      </div>
     </div>
   );
+}
+
+function InfoRow({ label, value }: { label: string; value: string }) {
+  return <div className="flex items-center justify-between gap-4"><dt className="flex items-center gap-1.5 text-muted-foreground">{label}<CircleHelp className="size-3.5" /></dt><dd className="font-medium text-foreground">{value}</dd></div>;
 }
