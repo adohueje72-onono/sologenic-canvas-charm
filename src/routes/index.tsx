@@ -155,7 +155,7 @@ function Index() {
             <Button variant="ghost" className="hidden size-9 px-0 sm:inline-flex lg:size-10" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
             <Button onClick={() => connect("origin")} className="h-10 px-3 text-sm sm:h-11 lg:px-5"><span className="whitespace-nowrap">Connect Wallet</span></Button>
             <div className="relative hidden sm:block">
-              <Button variant="ghost" className="size-10 px-0" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
+              <Button variant="ghost" className="size-9 px-0 lg:size-10" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
               {langOpen && (
                 <div className="absolute right-0 top-full z-50 mt-3 w-40 overflow-hidden rounded-xl border border-border bg-card py-2 shadow-2xl shadow-background/60">
                   {["English", "Español", "Deutsch", "Français"].map((lang) => (
