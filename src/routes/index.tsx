@@ -88,6 +88,8 @@ function Index() {
           </nav>
           <div className="ml-auto flex items-center gap-3">
             <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <Wifi className="ml-2 size-3.5 rotate-45 text-success" /><ChevronDown className="ml-1 size-3" /></Button>
+            <Button variant="ghost" className="size-10 px-0" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
+            <Button onClick={() => connect("origin")} size="icon" className="sm:hidden" aria-label="Connect Wallet"><Wallet className="size-4" /></Button>
             <Button onClick={() => connect("origin")} className="hidden sm:inline-flex"><Wallet className="mr-2 size-4" />Connect Wallet</Button>
             <div className="relative">
               <Button variant="ghost" className="size-10 px-0" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
@@ -102,14 +104,13 @@ function Index() {
                 </div>
               )}
             </div>
-            <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
           </div>
         </div>
       </header>
 
       <div className="relative mx-auto grid max-w-[1220px] gap-12 px-5 pb-16 pt-10 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:pt-12">
         <div className="pointer-events-none absolute -bottom-48 -left-56 h-[520px] w-[700px] opacity-60 bridge-mesh" />
-        <section className="relative z-10 pt-1">
+        <section className="relative z-10 min-w-0 pt-1">
           <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-[54px]">Convert to TX</h1>
           <p className="mt-7 max-w-sm text-sm leading-6 text-muted-foreground">Convert your existing tokens to the new upgraded chain in one simple step</p>
           <div className="mt-3 flex flex-col items-start gap-2 text-sm">
@@ -118,7 +119,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="bridge" className="relative z-10 rounded-lg border border-border bg-card p-5 shadow-2xl shadow-background/40 sm:p-7">
+        <section id="bridge" className="relative z-10 min-w-0 rounded-lg border border-border bg-card p-5 shadow-2xl shadow-background/40 sm:p-7">
           <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
             <Chain side="origin" label="Origin" name="XRP Ledger" connected={connected.origin} validated={validated.origin} onConnect={connect} onValidate={validate} />
             <div className="mt-1 hidden w-36 items-center sm:flex">
