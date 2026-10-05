@@ -210,6 +210,32 @@ function Index() {
         </section>
       </div>
 
+      {validatePicker && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={() => setValidatePicker(null)}>
+          <div className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-border bg-card p-6 shadow-2xl" onClick={(event) => event.stopPropagation()}>
+            <div className="flex items-start justify-between">
+              <h2 className="text-lg font-semibold">Validate a Wallet</h2>
+              <button aria-label="Close" className="-mr-1 -mt-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground" onClick={() => setValidatePicker(null)}>
+                <X className="size-5" />
+              </button>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">Choose a wallet to validate your {validatePicker === "destination" ? "TX" : "XRP Ledger"} address:</p>
+            <div className="mt-6 flex flex-col gap-3">
+              {validateWallets.map((option) => (
+                <button key={option.name} onClick={chooseValidateWallet} className="flex w-full items-center gap-4 rounded-lg border border-border/60 bg-secondary/40 px-4 py-3.5 text-left transition-colors hover:bg-secondary">
+                  <img src={option.icon} alt={option.name} className="size-12 shrink-0 rounded-xl object-cover" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-semibold">{option.name}</span>
+                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">{option.desc}</span>
+                  </span>
+                  <ChevronRight className="size-4 shrink-0 text-muted-foreground" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {walletPicker && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={() => setWalletPicker(null)}>
           <div className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl" onClick={(event) => event.stopPropagation()}>
