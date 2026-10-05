@@ -199,13 +199,17 @@ function Index() {
             <Chain side="origin" label="Origin" name="XRP Ledger" connected={connected.origin} validated={validated.origin} onConnect={connect} onValidate={validate} />
             <div className="relative mx-auto h-16 w-0.5 bg-primary/40 sm:hidden">
               {[0, 0.8, 1.6].map((d) => (
-                <span key={d} className="bridge-travel-y size-3.5 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d}s` }} />
+                <span key={d} className="bridge-travel-y" style={{ animationDelay: `${d}s` }}>
+                  <span className="bridge-wave-x block size-3.5 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d * 0.5}s` }} />
+                </span>
               ))}
             </div>
             <div className="relative mt-1 hidden h-6 w-36 items-center sm:flex">
               <span className="h-0.5 flex-1 bg-primary/50" />
               {[0, 0.8, 1.6].map((d) => (
-                <span key={d} className="bridge-travel size-3.5 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d}s` }} />
+                <span key={d} className="bridge-travel" style={{ animationDelay: `${d}s` }}>
+                  <span className="bridge-wave block size-3.5 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d * 0.5}s` }} />
+                </span>
               ))}
             </div>
             <Chain side="destination" label="Destination" name="TX" tx connected={connected.destination} validated={validated.destination} onConnect={connect} onValidate={validate} />
