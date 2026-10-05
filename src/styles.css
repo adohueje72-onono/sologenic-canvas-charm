@@ -210,24 +210,21 @@ html.light {
   }
 }
 
-@keyframes bridge-travel-y {
-  0% { top: 0%; opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-  15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  100% { top: 100%; opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-}
-
-.bridge-travel-y {
-  position: absolute;
-  left: 50%;
-  animation: bridge-travel-y 2.4s linear infinite !important;
+@keyframes bridge-travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  12% { opacity: 1; }
+  48% { offset-distance: 100%; opacity: 1; }
+  60% { offset-distance: 100%; opacity: 0; }
+  100% { offset-distance: 0%; opacity: 0; }
 }
 
 .bridge-travel {
   position: absolute;
-  top: 50%;
+  inset: 0 auto auto 0;
+  offset-anchor: center;
+  offset-rotate: 0deg;
   animation: bridge-travel 2.4s linear infinite !important;
-  will-change: left, opacity;
+  will-change: offset-distance, opacity;
 }
 
 @keyframes bridge-wave {
