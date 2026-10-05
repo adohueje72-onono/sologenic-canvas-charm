@@ -31,7 +31,7 @@ import vwXrp from "@/assets/vw-xrp.png";
 import vwMetamask from "@/assets/vw-metamask.png";
 import coinbaseReal from "@/assets/coinbase-real.png.asset.json";
 import vwRabby from "@/assets/vw-rabby.png";
-import vwZerion from "@/assets/vw-zerion.png";
+import zerionReal from "@/assets/zerion-real.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -110,7 +110,7 @@ function Index() {
     { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
     { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: coinbaseReal.url },
     { name: "Rabby Wallet", desc: "Connect using the Rabby EVM wallet", icon: vwRabby },
-    { name: "Zerion Wallet", desc: "Connect using Zerion Wallet", icon: vwZerion },
+    { name: "Zerion Wallet", desc: "Connect using Zerion Wallet", icon: zerionReal.url },
   ];
 
   const walletOptions = walletPicker === "destination" ? [
