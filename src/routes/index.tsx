@@ -23,6 +23,7 @@ import ledgerLogo from "@/assets/ledger-logo.png.asset.json";
 import dcentLogo from "@/assets/dcent-logo.png.asset.json";
 import xamanLogo from "@/assets/xaman-logo.png.asset.json";
 import crossmarkLogo from "@/assets/crossmark-logo.png.asset.json";
+import keplrReal from "@/assets/keplr-real.png.asset.json";
 import cosmostationReal from "@/assets/cosmostation-real.png.asset.json";
 import leapLogo from "@/assets/leap-logo.png.asset.json";
 import vwSologenic from "@/assets/vw-sologenic.png";
