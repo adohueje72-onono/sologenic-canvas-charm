@@ -24,7 +24,6 @@ import dcentLogo from "@/assets/dcent-logo.png.asset.json";
 import xamanLogo from "@/assets/xaman-logo.png.asset.json";
 import crossmarkLogo from "@/assets/crossmark-logo.png.asset.json";
 import cosmostationLogo from "@/assets/cosmostation-logo.png.asset.json";
-import keplrLogo from "@/assets/keplr-logo.png.asset.json";
 import leapLogo from "@/assets/leap-logo.png.asset.json";
 import vwSologenic from "@/assets/vw-sologenic.png";
 import vwXrp from "@/assets/vw-xrp.png";
@@ -117,7 +116,7 @@ function Index() {
 
   const walletOptions = walletPicker === "destination" ? [
     { name: "Cosmostation", icon: <img src={cosmostationLogo.url} alt="Cosmostation" className="size-10 rounded-lg object-cover" /> },
-    { name: "Keplr", icon: <img src={keplrLogo.url} alt="Keplr" className="size-10 rounded-lg object-cover" /> },
+    { name: "Keplr", icon: <img src={keplrReal.url} alt="Keplr" className="size-10 rounded-lg object-cover" /> },
     { name: "Leap", icon: <img src={leapLogo.url} alt="Leap" className="size-10 rounded-lg object-cover" /> },
   ] : [
     { name: "SOLO DEX", icon: <img src={soloLogo.url} alt="SOLO DEX" className="size-10 rounded-lg object-cover" /> },
