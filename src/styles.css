@@ -241,9 +241,9 @@ html.light {
 }
 
 .bridge-wave {
-  animation: bridge-wave 1.2s ease-in-out infinite;
+  animation: bridge-wave 1.2s linear infinite;
 }
 
 .bridge-wave-x {
-  animation: bridge-wave-x 1.2s ease-in-out infinite;
+  animation: bridge-wave-x 1.2s linear infinite;
 }
