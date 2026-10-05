@@ -33,6 +33,7 @@ import coinbaseReal from "@/assets/coinbase-real.png.asset.json";
 import rabbyReal from "@/assets/rabby-real.png.asset.json";
 import safepalReal from "@/assets/safepal-logo.png.asset.json";
 import trustWalletLogo from "@/assets/trustwallet-logo.png.asset.json";
+import walletConnectLogo from "@/assets/walletconnect-logo.svg.asset.json";
 import zerionReal from "@/assets/zerion-real.png.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -115,6 +116,7 @@ function Index() {
     { name: "Zerion Wallet", desc: "Connect using Zerion Wallet", icon: zerionReal.url },
     { name: "SafePal Wallet", desc: "Connect using the SafePal wallet", icon: safepalReal.url },
     { name: "Trust Wallet", desc: "Connect using the Trust Wallet wallet", icon: trustWalletLogo.url },
+    { name: "WalletConnect", desc: "Connect using the WalletConnect bridge", icon: walletConnectLogo.url },
   ];
 
   const walletOptions = walletPicker === "destination" ? [
