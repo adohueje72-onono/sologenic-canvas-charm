@@ -167,6 +167,35 @@ function Index() {
           <Button className="mt-8 h-12 w-full" onClick={() => connect("origin")}><Wallet className="mr-2 size-4" />{connected.origin ? "Wallet Connected" : "Connect Wallet"}</Button>
         </section>
       </div>
+
+      {walletPicker && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={() => setWalletPicker(null)}>
+          <div className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl" onClick={(event) => event.stopPropagation()}>
+            <div className="flex items-start justify-between">
+              <h2 className="text-lg font-semibold">Connect a Wallet</h2>
+              <button aria-label="Close" className="-mr-1 -mt-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground" onClick={() => setWalletPicker(null)}>
+                <X className="size-5" />
+              </button>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">Connect to your wallet using one of the following methods:</p>
+            <div className="mt-6 flex flex-col gap-4">
+              {[
+                { name: "SOLO DEX", icon: <img src={soloLogo.url} alt="SOLO DEX" className="size-10 rounded-lg object-cover" /> },
+                { name: "Ledger Device", icon: <img src={walletLedger} alt="Ledger Device" className="size-10 rounded-lg object-cover" /> },
+                { name: "D'CENT", icon: <img src={walletDcent} alt="D'CENT" className="size-10 rounded-lg object-cover" /> },
+                { name: "Xaman App", icon: <img src={walletXaman} alt="Xaman App" className="size-10 rounded-lg object-cover" /> },
+                { name: "Crossmark", icon: <img src={walletCrossmark} alt="Crossmark" className="size-10 rounded-lg object-cover" /> },
+              ].map((option) => (
+                <button key={option.name} onClick={chooseWallet} className="flex w-full items-center rounded-lg bg-secondary/60 px-4 py-3 transition-colors hover:bg-secondary">
+                  {option.icon}
+                  <span className="flex-1 text-center text-sm">{option.name}</span>
+                  <span className="size-10 shrink-0" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
