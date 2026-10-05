@@ -197,18 +197,23 @@ function Index() {
         <section id="bridge" className="relative z-10 min-w-0 rounded-lg border border-border bg-card p-5 shadow-2xl shadow-background/40 sm:p-7">
           <div className="grid grid-cols-1 items-center gap-10 sm:grid-cols-[1fr_auto_1fr] sm:gap-4">
             <Chain side="origin" label="Origin" name="XRP Ledger" connected={connected.origin} validated={validated.origin} onConnect={connect} onValidate={validate} />
-            <div className="relative mx-auto h-16 w-0.5 bg-primary/40 sm:hidden">
+            <div className="relative mx-auto h-16 w-10 sm:hidden">
+              <svg viewBox="0 0 40 64" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="absolute inset-0 h-full w-full text-primary/50">
+                <path d="M20 0 L6 16 L34 32 L6 48 L20 64" />
+              </svg>
               {[0, 0.8, 1.6].map((d) => (
-                <span key={d} className="bridge-travel-y" style={{ animationDelay: `${d}s` }}>
-                  <span className="bridge-wave-x block size-3.5 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d * 0.5}s` }} />
+                <span key={d} className="bridge-travel" style={{ offsetPath: 'path("M20 0 L6 16 L34 32 L6 48 L20 64")', animationDelay: `${d}s` }}>
+                  <span className="bridge-wave-x block size-3 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d * 0.5}s` }} />
                 </span>
               ))}
             </div>
-            <div className="relative mt-1 hidden h-6 w-36 items-center sm:flex">
-              <span className="h-0.5 flex-1 bg-primary/50" />
+            <div className="relative mt-1 hidden h-8 w-36 sm:block">
+              <svg viewBox="0 0 144 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="absolute inset-0 h-full w-full text-primary/50">
+                <path d="M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16" />
+              </svg>
               {[0, 0.8, 1.6].map((d) => (
-                <span key={d} className="bridge-travel" style={{ animationDelay: `${d}s` }}>
-                  <span className="bridge-wave block size-3.5 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d * 0.5}s` }} />
+                <span key={d} className="bridge-travel" style={{ offsetPath: 'path("M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16")', animationDelay: `${d}s` }}>
+                  <span className="bridge-wave block size-3 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d * 0.5}s` }} />
                 </span>
               ))}
             </div>
