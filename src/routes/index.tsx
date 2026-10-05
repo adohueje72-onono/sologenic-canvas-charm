@@ -194,13 +194,7 @@ function Index() {
             </div>
             <p className="mt-1 text-sm text-muted-foreground">Connect to your wallet using one of the following methods:</p>
             <div className="mt-6 flex flex-col gap-4">
-              {[
-                { name: "SOLO DEX", icon: <img src={soloLogo.url} alt="SOLO DEX" className="size-10 rounded-lg object-cover" /> },
-                { name: "Ledger Device", icon: <img src={ledgerLogo.url} alt="Ledger Device" className="size-10 rounded-lg object-cover" /> },
-                { name: "D'CENT", icon: <img src={dcentLogo.url} alt="D'CENT" className="size-10 rounded-lg object-cover" /> },
-                { name: "Xaman App", icon: <img src={xamanLogo.url} alt="Xaman App" className="size-10 rounded-lg object-cover" /> },
-                { name: "Crossmark", icon: <img src={crossmarkLogo.url} alt="Crossmark" className="size-10 rounded-lg object-cover" /> },
-              ].map((option) => (
+              {walletOptions.map((option) => (
                 <button key={option.name} onClick={chooseWallet} className="flex w-full items-center rounded-lg bg-secondary/60 px-4 py-3 transition-colors hover:bg-secondary">
                   {option.icon}
                   <span className="flex-1 text-center text-sm">{option.name}</span>
