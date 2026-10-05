@@ -156,6 +156,7 @@ function Index() {
                 </div>
               )}
             </div>
+            <Button variant="ghost" className="hidden size-8 px-0 sm:inline-flex lg:size-10" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
             <Button variant="ghost" className="size-10 px-0 text-primary sm:hidden" aria-label="Menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}</Button>
           </div>
         </div>
