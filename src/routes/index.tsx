@@ -89,7 +89,7 @@ function Index() {
         </section>
 
         <section id="bridge" className="relative z-10 rounded-lg border border-border bg-card p-5 shadow-2xl shadow-background/40 sm:p-7">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+          <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
             <Chain side="origin" label="Origin" name="XRP Ledger" connected={connected.origin} validated={validated.origin} onConnect={connect} onValidate={validate} />
             <div className="mt-1 hidden w-36 items-center sm:flex">
               <span className="h-px flex-1 bg-primary/45" /><span className="mx-1 h-3 w-10 rounded-[50%] border-t border-primary/70" /><span className="h-px flex-1 bg-primary/45" />
@@ -133,9 +133,9 @@ function Chain({ side, label, name, tx, connected, validated, onConnect, onValid
       <span className="mb-6 text-xs text-muted-foreground">{label}</span>
       <div className="relative"><div className="absolute -inset-8 rounded-full border border-border" /><ChainIcon tx={tx} /></div>
       <strong className="mt-4 text-sm font-medium">{name}</strong>
-      <div className="mt-4 flex flex-wrap justify-center gap-2">
-        <Button variant="secondary" className="px-3" onClick={() => onConnect(side)}>{connected ? "Connected" : "Connect Wallet"}</Button>
-        <Button variant="outline" className="px-3" onClick={() => onValidate(side)}>{validated ? "Validated" : "Validate"}</Button>
+      <div className="mt-4 flex justify-center gap-1.5 sm:gap-2">
+        <Button variant="secondary" size="sm" className="px-2 text-xs sm:px-3 sm:text-sm" onClick={() => onConnect(side)}>{connected ? "Connected" : "Connect Wallet"}</Button>
+        <Button variant="outline" size="sm" className="px-2 text-xs sm:px-3 sm:text-sm" onClick={() => onValidate(side)}>{validated ? "Validated" : "Validate"}</Button>
       </div>
     </div>
   );
