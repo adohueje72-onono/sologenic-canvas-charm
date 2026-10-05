@@ -143,18 +143,18 @@ function Index() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="relative border-b border-border/60 bg-background/95">
-        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center px-5 lg:px-8">
+        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center px-5 sm:px-4 lg:px-8">
           <BrandMark />
-          <nav className="ml-4 hidden items-center gap-2.5 text-[13px] text-muted-foreground sm:flex lg:ml-10 lg:gap-8 lg:text-sm">
+          <nav className="ml-3 hidden items-center gap-2 text-xs text-muted-foreground sm:flex lg:ml-10 lg:gap-8 lg:text-sm">
             {navItems.map((item) => (
               <a key={item.label} className={`flex shrink-0 items-center gap-1 whitespace-nowrap transition-colors hover:text-foreground ${item.active ? "text-foreground" : ""}`} href={item.href}>{item.label}{item.dropdown && <ChevronDown className="size-3" />}</a>
             ))}
           </nav>
-          <div className="ml-auto flex items-center gap-2 lg:gap-3">
-            <Button variant="outline" className="hidden rounded-full px-3 text-[13px] sm:inline-flex lg:px-5 lg:text-sm">Mainnet <Wifi className="ml-1.5 size-3.5 rotate-45 text-success lg:ml-2" /><ChevronDown className="ml-1 size-3" /></Button>
-            <Button variant="ghost" className="hidden size-9 px-0 sm:inline-flex lg:size-10" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
-            <Button onClick={() => connect("origin")} className="h-10 px-3 text-sm sm:h-11 lg:px-5"><span className="whitespace-nowrap">Connect Wallet</span></Button>
-            <div className="relative hidden sm:block">
+          <div className="ml-auto flex items-center gap-1.5 lg:gap-3">
+            <Button variant="outline" className="hidden rounded-full px-2.5 text-[13px] sm:inline-flex lg:px-5 lg:text-sm">Mainnet <Wifi className="ml-1.5 size-3.5 rotate-45 text-success lg:ml-2" /><ChevronDown className="ml-1 hidden size-3 lg:block" /></Button>
+            <Button variant="ghost" className="hidden size-8 px-0 sm:inline-flex lg:size-10" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
+            <Button onClick={() => connect("origin")} className="h-10 px-2.5 text-sm sm:h-11 lg:px-5"><span className="whitespace-nowrap">Connect Wallet</span></Button>
+            <div className="relative hidden lg:block">
               <Button variant="ghost" className="size-9 px-0 lg:size-10" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
               {langOpen && (
                 <div className="absolute right-0 top-full z-50 mt-3 w-40 overflow-hidden rounded-xl border border-border bg-card py-2 shadow-2xl shadow-background/60">
