@@ -198,22 +198,40 @@ function Index() {
           <div className="grid grid-cols-1 items-center gap-10 sm:grid-cols-[1fr_auto_1fr] sm:gap-4">
             <Chain side="origin" label="Origin" name="XRP Ledger" connected={connected.origin} validated={validated.origin} onConnect={connect} onValidate={validate} />
             <div className="relative mx-auto h-16 w-10 sm:hidden">
-              <svg viewBox="0 0 40 64" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="absolute inset-0 h-full w-full text-primary/50">
-                <path d="M20 0 L6 16 L34 32 L6 48 L20 64" />
+              <svg viewBox="0 0 40 64" fill="none" className="absolute inset-0 h-full w-full">
+                <defs>
+                  <linearGradient id="zig-v" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stopColor="var(--primary)" stopOpacity="0.25" />
+                    <stop offset="0.5" stopColor="var(--primary)" stopOpacity="1" />
+                    <stop offset="1" stopColor="var(--primary)" stopOpacity="0.25" />
+                  </linearGradient>
+                </defs>
+                <path d="M20 0 L6 16 L34 32 L6 48 L20 64" stroke="var(--primary)" strokeOpacity="0.22" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" className="blur-[3px]" />
+                <path d="M20 0 L6 16 L34 32 L6 48 L20 64" stroke="url(#zig-v)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M20 0 L6 16 L34 32 L6 48 L20 64" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="10 30" className="bridge-dash" />
               </svg>
               {[0, 0.8, 1.6].map((d) => (
                 <span key={d} className="bridge-travel" style={{ offsetPath: 'path("M20 0 L6 16 L34 32 L6 48 L20 64")', animationDelay: `${d}s` }}>
-                  <span className="bridge-wave-x block size-3 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d * 0.5}s` }} />
+                  <span className="block size-3 rounded-full bg-primary shadow-[0_0_16px_6px] shadow-primary/90" />
                 </span>
               ))}
             </div>
             <div className="relative mt-1 hidden h-8 w-36 sm:block">
-              <svg viewBox="0 0 144 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="absolute inset-0 h-full w-full text-primary/50">
-                <path d="M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16" />
+              <svg viewBox="0 0 144 32" fill="none" className="absolute inset-0 h-full w-full">
+                <defs>
+                  <linearGradient id="zig-h" x1="0" y1="0" x2="144" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stopColor="var(--primary)" stopOpacity="0.25" />
+                    <stop offset="0.5" stopColor="var(--primary)" stopOpacity="1" />
+                    <stop offset="1" stopColor="var(--primary)" stopOpacity="0.25" />
+                  </linearGradient>
+                </defs>
+                <path d="M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16" stroke="var(--primary)" strokeOpacity="0.22" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" className="blur-[3px]" />
+                <path d="M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16" stroke="url(#zig-h)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="10 30" className="bridge-dash" />
               </svg>
               {[0, 0.8, 1.6].map((d) => (
                 <span key={d} className="bridge-travel" style={{ offsetPath: 'path("M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16")', animationDelay: `${d}s` }}>
-                  <span className="bridge-wave block size-3 rounded-full bg-primary shadow-[0_0_16px_5px] shadow-primary/80" style={{ animationDelay: `${d * 0.5}s` }} />
+                  <span className="block size-3 rounded-full bg-primary shadow-[0_0_16px_6px] shadow-primary/90" />
                 </span>
               ))}
             </div>

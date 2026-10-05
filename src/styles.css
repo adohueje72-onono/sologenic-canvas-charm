@@ -227,20 +227,11 @@ html.light {
   will-change: offset-distance, opacity;
 }
 
-@keyframes bridge-wave {
-  0%, 100% { transform: translateY(-9px); }
-  50% { transform: translateY(9px); }
+@keyframes bridge-dash {
+  from { stroke-dashoffset: 40; }
+  to { stroke-dashoffset: 0; }
 }
 
-@keyframes bridge-wave-x {
-  0%, 100% { transform: translateX(-9px); }
-  50% { transform: translateX(9px); }
-}
-
-.bridge-wave {
-  animation: bridge-wave 1.2s linear infinite;
-}
-
-.bridge-wave-x {
-  animation: bridge-wave-x 1.2s linear infinite;
+.bridge-dash {
+  animation: bridge-dash 1.2s linear infinite;
 }
