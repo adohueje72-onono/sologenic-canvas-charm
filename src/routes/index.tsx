@@ -68,6 +68,7 @@ function ChainIcon({ tx = false }: { tx?: boolean }) {
 }
 
 function Index() {
+  const [connected, setConnected] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
   const [walletPicker, setWalletPicker] = useState<WalletSide | null>(null);
   const [validated, setValidated] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
   const [langOpen, setLangOpen] = useState(false);
