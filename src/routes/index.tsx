@@ -27,8 +27,6 @@ import cosmostationReal from "@/assets/cosmostation-real.png.asset.json";
 import leapLogo from "@/assets/leap-logo.png.asset.json";
 import vwSologenic from "@/assets/vw-sologenic.png";
 import vwXrp from "@/assets/vw-xrp.png";
-import keplrReal from "@/assets/keplr-real.png.asset.json";
-import vwCosmostation from "@/assets/vw-cosmostation.png";
 import vwMetamask from "@/assets/vw-metamask.png";
 import vwCoinbase from "@/assets/vw-coinbase.png";
 import vwRabby from "@/assets/vw-rabby.png";
