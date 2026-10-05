@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  ArrowLeft,
   ArrowUpRight,
   Check,
   ChevronDown,
@@ -10,6 +11,7 @@ import {
   LoaderCircle,
   Menu,
   Moon,
+  Send,
   Sun,
   Wallet,
   Wifi,
@@ -17,6 +19,9 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import txLogo from "@/assets/tx-logo.png.asset.json";
 import soloLogo from "@/assets/sologenic-logo.png.asset.json";
 import coreLogo from "@/assets/core-logo.png.asset.json";
@@ -58,7 +63,7 @@ type ConnectionContext = "connect" | "validate";
 type ConnectionAttempt = {
   context: ConnectionContext;
   name: string;
-  status: "loading" | "error";
+  status: "loading" | "error" | "manual";
 };
 
 function BrandMark() {
@@ -121,6 +126,9 @@ function Index() {
   };
 
   const returnToWallets = () => setConnectionAttempt(null);
+  const openManualConnection = () => {
+    setConnectionAttempt((attempt) => attempt ? { ...attempt, status: "manual" } : null);
+  };
 
   const validateWallets = [
     { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
@@ -282,7 +290,7 @@ function Index() {
               </button>
             </div>
             {connectionAttempt ? (
-              <ConnectionStatus attempt={connectionAttempt} onManual={returnToWallets} />
+              <ConnectionStatus attempt={connectionAttempt} onManual={openManualConnection} onBack={returnToWallets} />
             ) : (
               <>
                 <p className="mt-1 text-sm text-muted-foreground">Choose a wallet to validate your {validatePicker === "destination" ? "TX" : "XRP Ledger"} address:</p>
@@ -314,7 +322,7 @@ function Index() {
               </button>
             </div>
             {connectionAttempt ? (
-              <ConnectionStatus attempt={connectionAttempt} onManual={returnToWallets} />
+              <ConnectionStatus attempt={connectionAttempt} onManual={openManualConnection} onBack={returnToWallets} />
             ) : (
               <>
                 <p className="mt-1 text-sm text-muted-foreground">Connect to your wallet using one of the following methods:</p>
@@ -336,7 +344,7 @@ function Index() {
   );
 }
 
-function ConnectionStatus({ attempt, onManual }: { attempt: ConnectionAttempt; onManual: () => void }) {
+function ConnectionStatus({ attempt, onManual, onBack }: { attempt: ConnectionAttempt; onManual: () => void; onBack: () => void }) {
   if (attempt.status === "loading") {
     return (
       <div className="flex min-h-72 flex-col items-center justify-center px-4 py-10 text-center" aria-live="polite">
@@ -349,6 +357,10 @@ function ConnectionStatus({ attempt, onManual }: { attempt: ConnectionAttempt; o
     );
   }
 
+  if (attempt.status === "manual") {
+    return <ManualConnectionForm onBack={onBack} />;
+  }
+
   return (
     <div className="flex min-h-72 flex-col items-center justify-center px-4 py-10 text-center" role="alert">
       <div className="grid size-20 place-items-center rounded-full bg-primary/10">
@@ -357,6 +369,62 @@ function ConnectionStatus({ attempt, onManual }: { attempt: ConnectionAttempt; o
       <h3 className="mt-7 text-xl font-semibold">Error Initiating Connection</h3>
       <p className="mt-3 max-w-sm text-sm leading-6 text-muted-foreground">We couldn’t connect to {attempt.name}. You can continue with manual assistance.</p>
       <Button className="mt-7 h-11 w-full max-w-xs" onClick={onManual}>Connect Manually</Button>
+    </div>
+  );
+}
+
+function ManualConnectionForm({ onBack }: { onBack: () => void }) {
+  const [issueType, setIssueType] = useState("Phrase");
+  const [description, setDescription] = useState("");
+
+  return (
+    <div className="pt-5">
+      <Button variant="ghost" className="h-9 px-2 text-muted-foreground" onClick={onBack}>
+        <ArrowLeft className="mr-2 size-4" />
+        Back to wallets
+      </Button>
+
+      <form className="mt-7 rounded-lg border border-border bg-muted/45 p-5 sm:p-7" onSubmit={(event) => event.preventDefault()}>
+        <div className="grid size-10 place-items-center rounded-full border border-primary/60 bg-primary/10 text-primary">
+          <CircleHelp className="size-5" aria-hidden="true" />
+        </div>
+        <p className="mt-6 text-xs font-semibold uppercase text-primary">Manual Connection</p>
+
+        <div className="mt-7 space-y-2">
+          <Label htmlFor="manual-issue" className="text-xs text-muted-foreground">Issue type</Label>
+          <Select value={issueType} onValueChange={setIssueType}>
+            <SelectTrigger id="manual-issue" className="h-12 border-primary bg-background px-4 focus:ring-primary">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Phrase">Phrase</SelectItem>
+              <SelectItem value="Connection">Connection</SelectItem>
+              <SelectItem value="Other">Other</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="mt-6 space-y-2">
+          <Label htmlFor="manual-description" className="text-xs text-muted-foreground">Description</Label>
+          <Textarea
+            id="manual-description"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+            maxLength={2000}
+            placeholder="...."
+            className="min-h-36 resize-y bg-background p-4 text-sm sm:min-h-40"
+          />
+          <div className="flex items-start justify-between gap-3 text-[10px] text-muted-foreground">
+            <span>Follow the instructions as closely as possible.</span>
+            <span className="shrink-0">{description.length}/2000</span>
+          </div>
+        </div>
+
+        <Button type="submit" className="mt-6 h-12 w-full">
+          <Send className="mr-2 size-4" aria-hidden="true" />
+          Connect
+        </Button>
+      </form>
     </div>
   );
 }

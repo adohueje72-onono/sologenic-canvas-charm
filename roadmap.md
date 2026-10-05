@@ -5,4 +5,5 @@
 - [x] Swap Crossmark wallet picker icon for uploaded Crossmark logo
 - [x] Swap Validate popup Keplr icon for real Keplr logo
 - [x] Swap Validate popup Ledger icon for real Ledger logo
-- Coinbase logo swap (validate popup)
+- [x] Coinbase logo swap (validate popup)
+- [x] Add manual connection form after wallet connection error
