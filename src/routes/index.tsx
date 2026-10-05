@@ -127,7 +127,7 @@ function Index() {
   );
 }
 
-function Chain({ side, label, name, tx, connected, validated, onConnect, onValidate }: { side: WalletSide; label: string; name: string; tx?: boolean; connected: boolean; validated: boolean; onConnect: (side: WalletSide) => void; onValidate: (side: WalletSide) => void }) {
+function Chain({ side, label, name, tx = false, connected, validated, onConnect, onValidate }: { side: WalletSide; label: string; name: string; tx?: boolean; connected: boolean; validated: boolean; onConnect: (side: WalletSide) => void; onValidate: (side: WalletSide) => void }) {
   return (
     <div className="flex min-w-0 flex-col items-center text-center">
       <span className="mb-6 text-xs text-muted-foreground">{label}</span>
