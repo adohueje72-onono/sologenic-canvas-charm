@@ -3,6 +3,7 @@ import {
   ArrowUpRight,
   Check,
   ChevronDown,
+  ChevronRight,
   CircleHelp,
   Globe,
   Menu,
@@ -25,6 +26,15 @@ import crossmarkLogo from "@/assets/crossmark-logo.png.asset.json";
 import cosmostationLogo from "@/assets/cosmostation-logo.png.asset.json";
 import keplrLogo from "@/assets/keplr-logo.png.asset.json";
 import leapLogo from "@/assets/leap-logo.png.asset.json";
+import vwSologenic from "@/assets/vw-sologenic.png";
+import vwXrp from "@/assets/vw-xrp.png";
+import vwKeplr from "@/assets/vw-keplr.png";
+import vwCosmostation from "@/assets/vw-cosmostation.png";
+import vwLedger from "@/assets/vw-ledger.png";
+import vwMetamask from "@/assets/vw-metamask.png";
+import vwCoinbase from "@/assets/vw-coinbase.png";
+import vwRabby from "@/assets/vw-rabby.png";
+import vwZerion from "@/assets/vw-zerion.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -73,6 +83,7 @@ function ChainIcon({ tx = false }: { tx?: boolean }) {
 function Index() {
   const [connected, setConnected] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
   const [walletPicker, setWalletPicker] = useState<WalletSide | null>(null);
+  const [validatePicker, setValidatePicker] = useState<WalletSide | null>(null);
   const [validated, setValidated] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("English");
@@ -87,7 +98,23 @@ function Index() {
     if (walletPicker) setConnected((state) => ({ ...state, [walletPicker]: true }));
     setWalletPicker(null);
   };
-  const validate = (side: WalletSide) => setValidated((state) => ({ ...state, [side]: true }));
+  const validate = (side: WalletSide) => setValidatePicker(side);
+  const chooseValidateWallet = () => {
+    if (validatePicker) setValidated((state) => ({ ...state, [validatePicker]: true }));
+    setValidatePicker(null);
+  };
+
+  const validateWallets = [
+    { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
+    { name: "XRP Wallet", desc: "Connect with an XRP Ledger wallet", icon: vwXrp },
+    { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: vwKeplr },
+    { name: "Cosmostation", desc: "Connect using Cosmostation", icon: vwCosmostation },
+    { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: vwLedger },
+    { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
+    { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: vwCoinbase },
+    { name: "Rabby Wallet", desc: "Connect using the Rabby EVM wallet", icon: vwRabby },
+    { name: "Zerion Wallet", desc: "Connect using Zerion Wallet", icon: vwZerion },
+  ];
 
   const walletOptions = walletPicker === "destination" ? [
     { name: "Cosmostation", icon: <img src={cosmostationLogo.url} alt="Cosmostation" className="size-10 rounded-lg object-cover" /> },
@@ -182,6 +209,32 @@ function Index() {
           <Button className="mt-8 h-12 w-full" onClick={() => connect("origin")}><Wallet className="mr-2 size-4" />{connected.origin ? "Wallet Connected" : "Connect Wallet"}</Button>
         </section>
       </div>
+
+      {validatePicker && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={() => setValidatePicker(null)}>
+          <div className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-border bg-card p-6 shadow-2xl" onClick={(event) => event.stopPropagation()}>
+            <div className="flex items-start justify-between">
+              <h2 className="text-lg font-semibold">Validate a Wallet</h2>
+              <button aria-label="Close" className="-mr-1 -mt-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground" onClick={() => setValidatePicker(null)}>
+                <X className="size-5" />
+              </button>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">Choose a wallet to validate your {validatePicker === "destination" ? "TX" : "XRP Ledger"} address:</p>
+            <div className="mt-6 flex flex-col gap-3">
+              {validateWallets.map((option) => (
+                <button key={option.name} onClick={chooseValidateWallet} className="flex w-full items-center gap-4 rounded-lg border border-border/60 bg-secondary/40 px-4 py-3.5 text-left transition-colors hover:bg-secondary">
+                  <img src={option.icon} alt={option.name} className="size-12 shrink-0 rounded-xl object-cover" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-semibold">{option.name}</span>
+                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">{option.desc}</span>
+                  </span>
+                  <ChevronRight className="size-4 shrink-0 text-muted-foreground" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {walletPicker && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={() => setWalletPicker(null)}>
