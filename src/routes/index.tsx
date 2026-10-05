@@ -106,9 +106,9 @@ function Index() {
   const validateWallets = [
     { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
     { name: "XRP Wallet", desc: "Connect with an XRP Ledger wallet", icon: vwXrp },
-    { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: <img src={keplrReal.url} alt="Keplr" className="size-10 rounded-lg object-cover" /> },
+    { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: keplrReal.url },
     { name: "Cosmostation", desc: "Connect using Cosmostation", icon: vwCosmostation },
-    { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: <img src={ledgerLogo.url} alt="Ledger" className="size-10 rounded-lg object-cover" /> },
+    { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: ledgerLogo.url },
     { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
     { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: vwCoinbase },
     { name: "Rabby Wallet", desc: "Connect using the Rabby EVM wallet", icon: vwRabby },
