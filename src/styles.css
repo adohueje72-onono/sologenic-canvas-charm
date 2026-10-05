@@ -227,11 +227,3 @@ html.light {
   will-change: offset-distance, opacity;
 }
 
-@keyframes bridge-dash {
-  from { stroke-dashoffset: 40; }
-  to { stroke-dashoffset: 0; }
-}
-
-.bridge-dash {
-  animation: bridge-dash 1.2s linear infinite;
-}
