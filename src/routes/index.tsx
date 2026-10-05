@@ -108,7 +108,7 @@ function Index() {
     { name: "Cosmostation", desc: "Connect using Cosmostation", icon: cosmostationReal.url },
     { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: ledgerLogo.url },
     { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
-    { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: vwCoinbase },
+    { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: coinbaseReal.url },
     { name: "Rabby Wallet", desc: "Connect using the Rabby EVM wallet", icon: vwRabby },
     { name: "Zerion Wallet", desc: "Connect using Zerion Wallet", icon: vwZerion },
   ];
