@@ -24,13 +24,11 @@ import dcentLogo from "@/assets/dcent-logo.png.asset.json";
 import xamanLogo from "@/assets/xaman-logo.png.asset.json";
 import crossmarkLogo from "@/assets/crossmark-logo.png.asset.json";
 import cosmostationLogo from "@/assets/cosmostation-logo.png.asset.json";
-import keplrLogo from "@/assets/keplr-logo.png.asset.json";
 import leapLogo from "@/assets/leap-logo.png.asset.json";
 import vwSologenic from "@/assets/vw-sologenic.png";
 import vwXrp from "@/assets/vw-xrp.png";
-import vwKeplr from "@/assets/vw-keplr.png";
+import keplrReal from "@/assets/keplr-real.png.asset.json";
 import vwCosmostation from "@/assets/vw-cosmostation.png";
-import vwLedger from "@/assets/vw-ledger.png";
 import vwMetamask from "@/assets/vw-metamask.png";
 import vwCoinbase from "@/assets/vw-coinbase.png";
 import vwRabby from "@/assets/vw-rabby.png";
@@ -107,9 +105,9 @@ function Index() {
   const validateWallets = [
     { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
     { name: "XRP Wallet", desc: "Connect with an XRP Ledger wallet", icon: vwXrp },
-    { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: vwKeplr },
+    { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: keplrReal.url },
     { name: "Cosmostation", desc: "Connect using Cosmostation", icon: vwCosmostation },
-    { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: vwLedger },
+    { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: ledgerLogo.url },
     { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
     { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: vwCoinbase },
     { name: "Rabby Wallet", desc: "Connect using the Rabby EVM wallet", icon: vwRabby },
@@ -118,7 +116,7 @@ function Index() {
 
   const walletOptions = walletPicker === "destination" ? [
     { name: "Cosmostation", icon: <img src={cosmostationLogo.url} alt="Cosmostation" className="size-10 rounded-lg object-cover" /> },
-    { name: "Keplr", icon: <img src={keplrLogo.url} alt="Keplr" className="size-10 rounded-lg object-cover" /> },
+    { name: "Keplr", icon: <img src={keplrReal.url} alt="Keplr" className="size-10 rounded-lg object-cover" /> },
     { name: "Leap", icon: <img src={leapLogo.url} alt="Leap" className="size-10 rounded-lg object-cover" /> },
   ] : [
     { name: "SOLO DEX", icon: <img src={soloLogo.url} alt="SOLO DEX" className="size-10 rounded-lg object-cover" /> },
