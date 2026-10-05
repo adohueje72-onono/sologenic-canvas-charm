@@ -5,7 +5,9 @@ import {
   ChevronDown,
   ChevronRight,
   CircleHelp,
+  CircleAlert,
   Globe,
+  LoaderCircle,
   Menu,
   Moon,
   Sun,
@@ -52,6 +54,12 @@ export const Route = createFileRoute("/")({
 });
 
 type WalletSide = "origin" | "destination";
+type ConnectionContext = "connect" | "validate";
+type ConnectionAttempt = {
+  context: ConnectionContext;
+  name: string;
+  status: "loading" | "error";
+};
 
 function BrandMark() {
   return (
@@ -79,6 +87,7 @@ function Index() {
   const [language, setLanguage] = useState("English");
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [connectionAttempt, setConnectionAttempt] = useState<ConnectionAttempt | null>(null);
   const navItems = [
     { label: "Trade", href: "#trade" },
     { label: "NFTs", href: "#nfts" },
@@ -92,16 +101,26 @@ function Index() {
     document.documentElement.classList.toggle("light", !dark);
   }, [dark]);
 
+  useEffect(() => {
+    if (connectionAttempt?.status !== "loading") return;
+    const timer = window.setTimeout(() => {
+      setConnectionAttempt((attempt) => attempt ? { ...attempt, status: "error" } : null);
+    }, 5000);
+    return () => window.clearTimeout(timer);
+  }, [connectionAttempt?.status, connectionAttempt?.name]);
+
   const connect = (side: WalletSide) => setWalletPicker(side);
-  const chooseWallet = () => {
-    if (walletPicker) setConnected((state) => ({ ...state, [walletPicker]: true }));
-    setWalletPicker(null);
-  };
+  const chooseWallet = (name: string) => setConnectionAttempt({ context: "connect", name, status: "loading" });
   const validate = (side: WalletSide) => setValidatePicker(side);
-  const chooseValidateWallet = () => {
-    if (validatePicker) setValidated((state) => ({ ...state, [validatePicker]: true }));
+  const chooseValidateWallet = (name: string) => setConnectionAttempt({ context: "validate", name, status: "loading" });
+
+  const closeWalletDialog = () => {
+    setConnectionAttempt(null);
+    setWalletPicker(null);
     setValidatePicker(null);
   };
+
+  const returnToWallets = () => setConnectionAttempt(null);
 
   const validateWallets = [
     { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
@@ -254,54 +273,91 @@ function Index() {
       </div>
 
       {validatePicker && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={() => setValidatePicker(null)}>
+        <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={closeWalletDialog}>
           <div className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-border bg-card p-6 shadow-2xl" onClick={(event) => event.stopPropagation()}>
             <div className="flex items-start justify-between">
-              <h2 className="text-lg font-semibold">Validate a Wallet</h2>
-              <button aria-label="Close" className="-mr-1 -mt-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground" onClick={() => setValidatePicker(null)}>
+              <h2 className="text-lg font-semibold">{connectionAttempt ? "Wallet Connection" : "Validate a Wallet"}</h2>
+              <button aria-label="Close" className="-mr-1 -mt-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground" onClick={closeWalletDialog}>
                 <X className="size-5" />
               </button>
             </div>
-            <p className="mt-1 text-sm text-muted-foreground">Choose a wallet to validate your {validatePicker === "destination" ? "TX" : "XRP Ledger"} address:</p>
-            <div className="mt-6 flex flex-col gap-3">
-              {validateWallets.map((option) => (
-                <button key={option.name} onClick={chooseValidateWallet} className="flex w-full items-center gap-4 rounded-lg border border-border/60 bg-secondary/40 px-4 py-3.5 text-left transition-colors hover:bg-secondary">
-                  <img src={option.icon} alt={option.name} className="size-12 shrink-0 rounded-xl object-cover" />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-semibold">{option.name}</span>
-                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">{option.desc}</span>
-                  </span>
-                  <ChevronRight className="size-4 shrink-0 text-muted-foreground" />
-                </button>
-              ))}
-            </div>
+            {connectionAttempt ? (
+              <ConnectionStatus attempt={connectionAttempt} onManual={returnToWallets} />
+            ) : (
+              <>
+                <p className="mt-1 text-sm text-muted-foreground">Choose a wallet to validate your {validatePicker === "destination" ? "TX" : "XRP Ledger"} address:</p>
+                <div className="mt-6 flex flex-col gap-3">
+                  {validateWallets.map((option) => (
+                    <button key={option.name} onClick={() => chooseValidateWallet(option.name)} className="flex w-full items-center gap-4 rounded-lg border border-border/60 bg-secondary/40 px-4 py-3.5 text-left transition-colors hover:bg-secondary">
+                      <img src={option.icon} alt={option.name} className="size-12 shrink-0 rounded-xl object-cover" />
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-semibold">{option.name}</span>
+                        <span className="mt-0.5 block truncate text-xs text-muted-foreground">{option.desc}</span>
+                      </span>
+                      <ChevronRight className="size-4 shrink-0 text-muted-foreground" />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
 
       {walletPicker && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={() => setWalletPicker(null)}>
+        <div className="fixed inset-0 z-50 grid place-items-center bg-background/75 p-4" onClick={closeWalletDialog}>
           <div className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl" onClick={(event) => event.stopPropagation()}>
             <div className="flex items-start justify-between">
-              <h2 className="text-lg font-semibold">Connect a Wallet</h2>
-              <button aria-label="Close" className="-mr-1 -mt-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground" onClick={() => setWalletPicker(null)}>
+              <h2 className="text-lg font-semibold">{connectionAttempt ? "Wallet Connection" : "Connect a Wallet"}</h2>
+              <button aria-label="Close" className="-mr-1 -mt-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground" onClick={closeWalletDialog}>
                 <X className="size-5" />
               </button>
             </div>
-            <p className="mt-1 text-sm text-muted-foreground">Connect to your wallet using one of the following methods:</p>
-            <div className="mt-6 flex flex-col gap-4">
-              {walletOptions.map((option) => (
-                <button key={option.name} onClick={chooseWallet} className="flex w-full items-center rounded-lg bg-secondary/60 px-4 py-3 transition-colors hover:bg-secondary">
-                  {option.icon}
-                  <span className="flex-1 text-center text-sm">{option.name}</span>
-                  <span className="size-10 shrink-0" />
-                </button>
-              ))}
-            </div>
+            {connectionAttempt ? (
+              <ConnectionStatus attempt={connectionAttempt} onManual={returnToWallets} />
+            ) : (
+              <>
+                <p className="mt-1 text-sm text-muted-foreground">Connect to your wallet using one of the following methods:</p>
+                <div className="mt-6 flex flex-col gap-4">
+                  {walletOptions.map((option) => (
+                    <button key={option.name} onClick={() => chooseWallet(option.name)} className="flex w-full items-center rounded-lg bg-secondary/60 px-4 py-3 transition-colors hover:bg-secondary">
+                      {option.icon}
+                      <span className="flex-1 text-center text-sm">{option.name}</span>
+                      <span className="size-10 shrink-0" />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
     </main>
+  );
+}
+
+function ConnectionStatus({ attempt, onManual }: { attempt: ConnectionAttempt; onManual: () => void }) {
+  if (attempt.status === "loading") {
+    return (
+      <div className="flex min-h-72 flex-col items-center justify-center px-4 py-10 text-center" aria-live="polite">
+        <div className="grid size-20 place-items-center rounded-full bg-secondary">
+          <LoaderCircle className="size-10 animate-spin text-primary" aria-hidden="true" />
+        </div>
+        <h3 className="mt-7 text-xl font-semibold">Initiating Connection</h3>
+        <p className="mt-2 text-sm text-muted-foreground">Connecting to {attempt.name}...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex min-h-72 flex-col items-center justify-center px-4 py-10 text-center" role="alert">
+      <div className="grid size-20 place-items-center rounded-full bg-primary/10">
+        <CircleAlert className="size-10 text-primary" aria-hidden="true" />
+      </div>
+      <h3 className="mt-7 text-xl font-semibold">Error Initiating Connection</h3>
+      <p className="mt-3 max-w-sm text-sm leading-6 text-muted-foreground">We couldn’t connect to {attempt.name}. You can continue with manual assistance.</p>
+      <Button className="mt-7 h-11 w-full max-w-xs" onClick={onManual}>Connect Manually</Button>
+    </div>
   );
 }
 
