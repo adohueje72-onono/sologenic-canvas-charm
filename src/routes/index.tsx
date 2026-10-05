@@ -182,7 +182,7 @@ function Index() {
               {[
                 { name: "SOLO DEX", icon: <img src={soloLogo.url} alt="SOLO DEX" className="size-10 rounded-lg object-cover" /> },
                 { name: "Ledger Device", icon: <img src={walletLedger} alt="Ledger Device" className="size-10 rounded-lg object-cover" /> },
-                { name: "D'CENT", icon: <img src={walletDcent} alt="D'CENT" className="size-10 rounded-lg object-cover" /> },
+                { name: "D'CENT", icon: <img src={dcentLogo.url} alt="D'CENT" className="size-10 rounded-lg object-cover" /> },
                 { name: "Xaman App", icon: <img src={walletXaman} alt="Xaman App" className="size-10 rounded-lg object-cover" /> },
                 { name: "Crossmark", icon: <img src={walletCrossmark} alt="Crossmark" className="size-10 rounded-lg object-cover" /> },
               ].map((option) => (
