@@ -5,7 +5,6 @@ import {
   ChevronDown,
   CircleHelp,
   Globe,
-  Menu,
   Moon,
   Sun,
   Wallet,
