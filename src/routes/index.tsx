@@ -104,6 +104,7 @@ function Index() {
                 </div>
               )}
             </div>
+            <Button variant="ghost" className="size-10 px-0 text-primary sm:hidden" aria-label="Menu"><Menu className="size-6" /></Button>
           </div>
         </div>
       </header>
@@ -120,7 +121,7 @@ function Index() {
         </section>
 
         <section id="bridge" className="relative z-10 min-w-0 rounded-lg border border-border bg-card p-5 shadow-2xl shadow-background/40 sm:p-7">
-          <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
+          <div className="grid grid-cols-1 items-center gap-10 sm:grid-cols-[1fr_auto_1fr] sm:gap-4">
             <Chain side="origin" label="Origin" name="XRP Ledger" connected={connected.origin} validated={validated.origin} onConnect={connect} onValidate={validate} />
             <div className="mt-1 hidden w-36 items-center sm:flex">
               <span className="h-px flex-1 bg-primary/45" /><span className="mx-1 h-3 w-10 rounded-[50%] border-t border-primary/70" /><span className="h-px flex-1 bg-primary/45" />
@@ -139,10 +140,10 @@ function Index() {
 
           <div className="mt-7">
             <label className="mb-2 block text-xs text-muted-foreground">Destination Address</label>
-            <div className="flex min-h-16 items-center rounded-md border border-border bg-secondary/45 px-4">
-              <img src={txLogo.url} alt="TX" className="mr-4 size-7 shrink-0 rounded-md object-cover" />
+            <div className="flex min-h-16 flex-col items-center justify-center gap-3 rounded-md border border-border bg-secondary/45 px-4 py-5 sm:flex-row sm:py-0">
+              <img src={txLogo.url} alt="TX" className="size-9 shrink-0 rounded-md object-cover sm:mr-4 sm:size-7" />
               <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">Destination wallet address</span>
-              <Button variant="secondary" className="ml-3 shrink-0" onClick={() => connect("destination")}>{connected.destination ? "Connected" : "Connect Wallet"}</Button>
+              <Button variant="secondary" className="shrink-0 sm:ml-3" onClick={() => connect("destination")}>{connected.destination ? "Connected" : "Connect Wallet"}</Button>
             </div>
           </div>
 
@@ -173,5 +174,5 @@ function Chain({ side, label, name, tx = false, connected, validated, onConnect,
 }
 
 function InfoRow({ label, value }: { label: string; value: string }) {
-  return <div className="flex items-center justify-between gap-4"><dt className="flex items-center gap-1.5 text-muted-foreground">{label}<CircleHelp className="size-3.5" /></dt><dd className="font-medium text-foreground">{value}</dd></div>;
+  return <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4"><dt className="flex items-center gap-1.5 text-muted-foreground">{label}<CircleHelp className="size-3.5" /></dt><dd className="font-medium text-foreground">{value}</dd></div>;
 }
