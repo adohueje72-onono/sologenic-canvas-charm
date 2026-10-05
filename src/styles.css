@@ -229,3 +229,21 @@ html.light {
   animation: bridge-travel 2.4s linear infinite !important;
   will-change: left, opacity;
 }
+
+@keyframes bridge-wave {
+  0%, 100% { transform: translateY(-9px); }
+  50% { transform: translateY(9px); }
+}
+
+@keyframes bridge-wave-x {
+  0%, 100% { transform: translateX(-9px); }
+  50% { transform: translateX(9px); }
+}
+
+.bridge-wave {
+  animation: bridge-wave 1.2s ease-in-out infinite;
+}
+
+.bridge-wave-x {
+  animation: bridge-wave-x 1.2s ease-in-out infinite;
+}
