@@ -83,7 +83,19 @@ function Index() {
           <div className="ml-auto flex items-center gap-3">
             <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <Wifi className="ml-2 size-3.5 rotate-45 text-success" /><ChevronDown className="ml-1 size-3" /></Button>
             <Button onClick={() => connect("origin")} className="hidden sm:inline-flex"><Wallet className="mr-2 size-4" />Connect Wallet</Button>
-            <Button variant="ghost" className="size-10 px-0" aria-label="Language"><Globe className="size-5" /></Button>
+            <div className="relative">
+              <Button variant="ghost" className="size-10 px-0" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
+              {langOpen && (
+                <div className="absolute right-0 top-full z-50 mt-3 w-40 overflow-hidden rounded-xl border border-border bg-card py-2 shadow-2xl shadow-background/60">
+                  {["English", "Español", "Deutsch", "Français"].map((lang) => (
+                    <button key={lang} onClick={() => { setLanguage(lang); setLangOpen(false); }} className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-sm transition-colors hover:bg-secondary/60 ${language === lang ? "rounded-lg bg-secondary/60 text-foreground" : "text-muted-foreground"}`}>
+                      {lang}
+                      {language === lang && <span className="text-success"><Check className="size-4" /></span>}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label="Theme"><Moon className="size-5" /></Button>
             <Button variant="ghost" className="size-10 px-0 lg:hidden" aria-label="Menu"><Menu className="size-5" /></Button>
           </div>
