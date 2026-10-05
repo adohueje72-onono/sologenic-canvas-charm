@@ -22,6 +22,9 @@ import ledgerLogo from "@/assets/ledger-logo.png.asset.json";
 import dcentLogo from "@/assets/dcent-logo.png.asset.json";
 import xamanLogo from "@/assets/xaman-logo.png.asset.json";
 import crossmarkLogo from "@/assets/crossmark-logo.png.asset.json";
+import cosmostationLogo from "@/assets/cosmostation-logo.png.asset.json";
+import keplrLogo from "@/assets/keplr-logo.png.asset.json";
+import leapLogo from "@/assets/leap-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
