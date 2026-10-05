@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import txLogo from "@/assets/tx-logo.png.asset.json";
 import soloLogo from "@/assets/sologenic-logo.png.asset.json";
 import coreLogo from "@/assets/core-logo.png.asset.json";
+import xrpLogo from "@/assets/xrp-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -133,7 +134,7 @@ function Index() {
           <div className="mt-12 grid grid-cols-1 gap-2 sm:grid-cols-3">
             {["SOLO", "XRP", "CORE"].map((token, index) => (
               <div key={token} className="h-24 rounded-md bg-muted p-3">
-                <div className="flex items-center justify-between">{index === 0 ? <img src={soloLogo.url} alt="SOLO" className="size-7 rounded-full" /> : index === 1 ? <span className="grid size-7 place-items-center rounded-full bg-foreground"><XrpMark className="size-3.5 text-background" /></span> : <img src={coreLogo.url} alt="CORE" className="size-7 rounded-full" />}<span className="text-xs text-primary/65">Max</span></div>
+                <div className="flex items-center justify-between">{index === 0 ? <img src={soloLogo.url} alt="SOLO" className="size-7 rounded-full" /> : index === 1 ? <img src={xrpLogo} alt="XRP" className="size-7 rounded-full" /> : <img src={coreLogo.url} alt="CORE" className="size-7 rounded-full" />}<span className="text-xs text-primary/65">Max</span></div>
                 <div className="mt-4 text-sm text-muted-foreground">--</div>
               </div>
             ))}
