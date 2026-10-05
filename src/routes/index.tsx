@@ -127,8 +127,8 @@ function Index() {
           <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-[54px]">Convert to TX</h1>
           <p className="mt-7 max-w-sm text-sm leading-6 text-muted-foreground">Convert your existing tokens to the new upgraded chain in one simple step</p>
           <div className="mt-3 flex flex-col items-start gap-2 text-sm">
-            <a href="#learn" className="inline-flex items-center gap-1.5 text-primary hover:underline"><ArrowUpRight className="size-4" />Learn more about TX</a>
-            <a href="#details" className="inline-flex items-center gap-1.5 text-primary hover:underline"><ArrowUpRight className="size-4" />Read conversion details</a>
+            <a href="https://tx.org/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-primary hover:underline"><ArrowUpRight className="size-4" />Learn more about TX</a>
+            <a href="https://medium.com/@txEcosystem/sologenic-to-join-tx-token-generation-migration-and-proof-of-support-emissions-a64668add381" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-primary hover:underline"><ArrowUpRight className="size-4" />Read conversion details</a>
           </div>
         </section>
 
