@@ -142,7 +142,6 @@ function Index() {
           </nav>
           <div className="ml-auto flex items-center gap-1.5 lg:gap-3">
             <Button variant="outline" className="hidden rounded-full px-2.5 text-[13px] sm:inline-flex lg:px-4 lg:text-sm xl:px-5">Mainnet <Wifi className="ml-1.5 size-3.5 rotate-45 text-success lg:ml-2" /><ChevronDown className="ml-1 hidden size-3 lg:block" /></Button>
-            <Button variant="ghost" className="hidden size-8 px-0 sm:inline-flex lg:size-10" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
             <Button onClick={() => connect("origin")} className="h-10 px-2.5 text-sm sm:h-11 lg:px-4 xl:px-5"><span className="whitespace-nowrap">Connect Wallet</span></Button>
             <div className="relative hidden lg:block">
               <Button variant="ghost" className="size-9 px-0 lg:size-10" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
@@ -157,6 +156,7 @@ function Index() {
                 </div>
               )}
             </div>
+            <Button variant="ghost" className="hidden size-8 px-0 sm:inline-flex lg:size-10" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
             <Button variant="ghost" className="size-10 px-0 text-primary sm:hidden" aria-label="Menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}</Button>
           </div>
         </div>
