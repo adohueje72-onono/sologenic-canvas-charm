@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import txLogo from "@/assets/tx-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,7 +40,7 @@ function BrandMark() {
 
 function ChainIcon({ tx = false }: { tx?: boolean }) {
   return tx ? (
-    <span className="grid size-14 place-items-center rounded-xl bg-lime text-2xl font-bold text-lime-foreground">t×</span>
+    <img src={txLogo.url} alt="TX" className="size-14 rounded-xl object-cover" />
   ) : (
     <span className="grid size-14 place-items-center rounded-xl bg-foreground text-background">
       <X className="size-8 stroke-[1.5]" />
@@ -109,7 +110,7 @@ function Index() {
           <div className="mt-7">
             <label className="mb-2 block text-xs text-muted-foreground">Destination Address</label>
             <div className="flex min-h-16 items-center rounded-md border border-border bg-secondary/45 px-4">
-              <span className="mr-4 grid size-7 shrink-0 place-items-center rounded-md bg-lime text-xs font-bold text-lime-foreground">t×</span>
+              <img src={txLogo.url} alt="TX" className="mr-4 size-7 shrink-0 rounded-md object-cover" />
               <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">Destination wallet address</span>
               <Button variant="secondary" className="ml-3 shrink-0" onClick={() => connect("destination")}>{connected.destination ? "Connected" : "Connect Wallet"}</Button>
             </div>
