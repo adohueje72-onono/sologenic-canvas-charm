@@ -104,7 +104,6 @@ function Index() {
                 </div>
               )}
             </div>
-            <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
           </div>
         </div>
       </header>
