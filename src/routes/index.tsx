@@ -7,10 +7,11 @@ import {
   Globe,
   Menu,
   Moon,
+  Sun,
   Wallet,
   Wifi,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import txLogo from "@/assets/tx-logo.png.asset.json";
 import soloLogo from "@/assets/sologenic-logo.png.asset.json";
@@ -64,6 +65,11 @@ function Index() {
   const [validated, setValidated] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("English");
+  const [dark, setDark] = useState(true);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("light", !dark);
+  }, [dark]);
 
   const connect = (side: WalletSide) => setConnected((state) => ({ ...state, [side]: true }));
   const validate = (side: WalletSide) => setValidated((state) => ({ ...state, [side]: true }));
@@ -97,7 +103,7 @@ function Index() {
                 </div>
               )}
             </div>
-            <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label="Theme"><Moon className="size-5" /></Button>
+            <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
             <Button variant="ghost" className="size-10 px-0 lg:hidden" aria-label="Menu"><Menu className="size-5" /></Button>
           </div>
         </div>
