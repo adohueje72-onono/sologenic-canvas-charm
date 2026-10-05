@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import txLogo from "@/assets/tx-logo.png.asset.json";
 import soloLogo from "@/assets/sologenic-logo.png.asset.json";
 import coreLogo from "@/assets/core-logo.png.asset.json";
+import xrpLedgerLogo from "@/assets/xrp-ledger-logo.png.asset.json";
 import xrpLogo from "@/assets/xrp-logo.png";
 import ledgerLogo from "@/assets/ledger-logo.png.asset.json";
 import dcentLogo from "@/assets/dcent-logo.png.asset.json";
@@ -61,22 +62,11 @@ function BrandMark() {
   );
 }
 
-function XrpMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 38.28 39.16" className={className} fill="currentColor" aria-hidden="true">
-      <path d="M34.12 2.62h6.15L26.19 16.79a8.71 8.71 0 0 1-12.31 0L-.19 2.62H5.96L17.1 13.79a4.36 4.36 0 0 0 6.16 0z" />
-      <path d="M5.91 36.53H-.24L13.88 22.4a8.71 8.71 0 0 1 12.31 0l14.12 14.13h-6.15L22.97 25.36a4.36 4.36 0 0 0-6.15 0z" />
-    </svg>
-  );
-}
-
 function ChainIcon({ tx = false }: { tx?: boolean }) {
   return tx ? (
     <img src={txLogo.url} alt="TX" className="size-14 rounded-xl object-cover" />
   ) : (
-    <span className="grid size-14 place-items-center rounded-xl bg-foreground">
-      <XrpMark className="size-8 text-background" />
-    </span>
+    <img src={xrpLedgerLogo.url} alt="XRP Ledger" className="size-14 rounded-xl object-cover" />
   );
 }
 
