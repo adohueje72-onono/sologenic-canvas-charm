@@ -133,9 +133,9 @@ function Chain({ side, label, name, tx = false, connected, validated, onConnect,
       <span className="mb-6 text-xs text-muted-foreground">{label}</span>
       <div className="relative"><div className="absolute -inset-8 rounded-full border border-border" /><ChainIcon tx={tx} /></div>
       <strong className="mt-4 text-sm font-medium">{name}</strong>
-      <div className="mt-4 flex justify-center gap-1.5 sm:gap-2">
-        <Button variant="secondary" size="sm" className="px-2 text-xs sm:px-3 sm:text-sm" onClick={() => onConnect(side)}>{connected ? "Connected" : "Connect Wallet"}</Button>
-        <Button variant="outline" size="sm" className="px-2 text-xs sm:px-3 sm:text-sm" onClick={() => onValidate(side)}>{validated ? "Validated" : "Validate"}</Button>
+      <div className="mt-4 flex w-full flex-col items-center gap-1.5">
+        <Button variant="secondary" size="sm" className="w-full max-w-56 text-xs sm:text-sm" onClick={() => onConnect(side)}>{connected ? "Connected" : "Connect Wallet"}</Button>
+        <Button variant="outline" size="sm" className="w-full max-w-56 text-xs sm:text-sm" onClick={() => onValidate(side)}>{validated ? "Validated" : "Validate"}</Button>
       </div>
     </div>
   );
