@@ -198,7 +198,6 @@ function Index() {
                 </defs>
                 <path d="M20 0 L6 16 L34 32 L6 48 L20 64" stroke="var(--primary)" strokeOpacity="0.22" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" className="blur-[3px]" />
                 <path d="M20 0 L6 16 L34 32 L6 48 L20 64" stroke="url(#zig-v)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M20 0 L6 16 L34 32 L6 48 L20 64" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="10 30" className="bridge-dash" />
               </svg>
               {[0, 0.8, 1.6].map((d) => (
                 <span key={d} className="bridge-travel" style={{ offsetPath: 'path("M20 0 L6 16 L34 32 L6 48 L20 64")', animationDelay: `${d}s` }}>
@@ -217,7 +216,6 @@ function Index() {
                 </defs>
                 <path d="M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16" stroke="var(--primary)" strokeOpacity="0.22" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" className="blur-[3px]" />
                 <path d="M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16" stroke="url(#zig-h)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="10 30" className="bridge-dash" />
               </svg>
               {[0, 0.8, 1.6].map((d) => (
                 <span key={d} className="bridge-travel" style={{ offsetPath: 'path("M0 16 L24 4 L48 28 L72 4 L96 28 L120 4 L144 16")', animationDelay: `${d}s` }}>
