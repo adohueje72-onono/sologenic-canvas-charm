@@ -7,6 +7,7 @@ import {
   Globe,
   Menu,
   Moon,
+  Sun,
   Wallet,
   Wifi,
 } from "lucide-react";
