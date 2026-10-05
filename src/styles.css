@@ -210,9 +210,22 @@ html.light {
   }
 }
 
+@keyframes bridge-travel-y {
+  0% { top: 0%; opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { top: 100%; opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+}
+
+.bridge-travel-y {
+  position: absolute;
+  left: 50%;
+  animation: bridge-travel-y 2.4s linear infinite !important;
+}
+
 .bridge-travel {
   position: absolute;
   top: 50%;
-  animation: bridge-travel 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation: bridge-travel 2.4s linear infinite !important;
   will-change: left, opacity;
 }
