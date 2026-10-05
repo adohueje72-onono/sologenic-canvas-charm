@@ -143,19 +143,19 @@ function Index() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="relative border-b border-border/60 bg-background/95">
-        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center px-5 lg:px-8">
+        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center px-5 sm:px-4 lg:px-8">
           <BrandMark />
-          <nav className="ml-6 hidden items-center gap-5 text-sm text-muted-foreground sm:flex lg:ml-10 lg:gap-8">
+          <nav className="ml-3 hidden items-center gap-2 text-xs text-muted-foreground sm:flex lg:ml-8 lg:gap-7 lg:text-sm xl:ml-10 xl:gap-8">
             {navItems.map((item) => (
               <a key={item.label} className={`flex shrink-0 items-center gap-1 whitespace-nowrap transition-colors hover:text-foreground ${item.active ? "text-foreground" : ""}`} href={item.href}>{item.label}{item.dropdown && <ChevronDown className="size-3" />}</a>
             ))}
           </nav>
-          <div className="ml-auto flex items-center gap-3">
-            <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <Wifi className="ml-2 size-3.5 rotate-45 text-success" /><ChevronDown className="ml-1 size-3" /></Button>
-            <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
-            <Button onClick={() => connect("origin")} className="h-10 px-4 text-sm sm:h-11 sm:px-5">Connect Wallet</Button>
-            <div className="relative hidden sm:block">
-              <Button variant="ghost" className="size-10 px-0" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
+          <div className="ml-auto flex items-center gap-1.5 lg:gap-3">
+            <Button variant="outline" className="hidden rounded-full px-2.5 text-[13px] sm:inline-flex lg:px-4 lg:text-sm xl:px-5">Mainnet <Wifi className="ml-1.5 size-3.5 rotate-45 text-success lg:ml-2" /><ChevronDown className="ml-1 hidden size-3 lg:block" /></Button>
+            <Button variant="ghost" className="hidden size-8 px-0 sm:inline-flex lg:size-10" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>{dark ? <Sun className="size-5" /> : <Moon className="size-5" />}</Button>
+            <Button onClick={() => connect("origin")} className="h-10 px-2.5 text-sm sm:h-11 lg:px-4 xl:px-5"><span className="whitespace-nowrap">Connect Wallet</span></Button>
+            <div className="relative hidden lg:block">
+              <Button variant="ghost" className="size-9 px-0 lg:size-10" aria-label="Language" onClick={() => setLangOpen((open) => !open)}><Globe className="size-5" /></Button>
               {langOpen && (
                 <div className="absolute right-0 top-full z-50 mt-3 w-40 overflow-hidden rounded-xl border border-border bg-card py-2 shadow-2xl shadow-background/60">
                   {["English", "Español", "Deutsch", "Français"].map((lang) => (
@@ -183,10 +183,10 @@ function Index() {
         )}
       </header>
 
-      <div className="relative mx-auto grid max-w-[1220px] gap-12 px-5 pb-16 pt-10 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:pt-12">
+      <div className="relative mx-auto grid max-w-[1220px] gap-12 px-5 pb-16 pt-10 md:grid-cols-[0.78fr_1.22fr] md:px-8 md:pt-12">
         <div className="pointer-events-none absolute -bottom-48 -left-56 h-[520px] w-[700px] opacity-60 bridge-mesh" />
         <section className="relative z-10 min-w-0 pt-1">
-          <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-[54px]">Convert to TX</h1>
+          <h1 className="text-4xl font-semibold leading-tight sm:text-5xl md:text-[54px]">Convert to TX</h1>
           <p className="mt-7 max-w-sm text-sm leading-6 text-muted-foreground">Convert your existing tokens to the new upgraded chain in one simple step</p>
           <div className="mt-3 flex flex-col items-start gap-2 text-sm">
             <a href="https://tx.org/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-primary hover:underline"><ArrowUpRight className="size-4" />Learn more about TX</a>
