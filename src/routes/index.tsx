@@ -83,6 +83,7 @@ function ChainIcon({ tx = false }: { tx?: boolean }) {
 function Index() {
   const [connected, setConnected] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
   const [walletPicker, setWalletPicker] = useState<WalletSide | null>(null);
+  const [validatePicker, setValidatePicker] = useState<WalletSide | null>(null);
   const [validated, setValidated] = useState<Record<WalletSide, boolean>>({ origin: false, destination: false });
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("English");
@@ -97,7 +98,23 @@ function Index() {
     if (walletPicker) setConnected((state) => ({ ...state, [walletPicker]: true }));
     setWalletPicker(null);
   };
-  const validate = (side: WalletSide) => setValidated((state) => ({ ...state, [side]: true }));
+  const validate = (side: WalletSide) => setValidatePicker(side);
+  const chooseValidateWallet = () => {
+    if (validatePicker) setValidated((state) => ({ ...state, [validatePicker]: true }));
+    setValidatePicker(null);
+  };
+
+  const validateWallets = [
+    { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
+    { name: "XRP Wallet", desc: "Connect with an XRP Ledger wallet", icon: vwXrp },
+    { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: vwKeplr },
+    { name: "Cosmostation", desc: "Connect using Cosmostation", icon: vwCosmostation },
+    { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: vwLedger },
+    { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
+    { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: vwCoinbase },
+    { name: "Rabby Wallet", desc: "Connect using the Rabby EVM wallet", icon: vwRabby },
+    { name: "Zerion Wallet", desc: "Connect using Zerion Wallet", icon: vwZerion },
+  ];
 
   const walletOptions = walletPicker === "destination" ? [
     { name: "Cosmostation", icon: <img src={cosmostationLogo.url} alt="Cosmostation" className="size-10 rounded-lg object-cover" /> },
