@@ -3,7 +3,7 @@ import {
   ArrowUpRight,
   ChevronDown,
   CircleHelp,
-  Globe2,
+  Globe,
   Menu,
   Moon,
   Wallet,
