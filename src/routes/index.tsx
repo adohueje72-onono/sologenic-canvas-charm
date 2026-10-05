@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import txLogo from "@/assets/tx-logo.png.asset.json";
+import soloLogo from "@/assets/sologenic-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +33,7 @@ type WalletSide = "origin" | "destination";
 function BrandMark() {
   return (
     <span className="flex items-center gap-2.5 font-semibold text-foreground">
-      <span className="grid size-6 place-items-center rounded-full bg-foreground text-xs font-bold text-background">S</span>
+      <img src={soloLogo.url} alt="Sologenic" className="size-6 rounded-full" />
       <span>sologenic <span className="font-normal text-primary">DEX</span></span>
     </span>
   );
@@ -101,7 +102,7 @@ function Index() {
           <div className="mt-12 grid grid-cols-1 gap-2 sm:grid-cols-3">
             {["SOLO", "XRP", "CORE"].map((token, index) => (
               <div key={token} className="h-24 rounded-md bg-muted p-3">
-                <div className="flex items-center justify-between"><span className="grid size-7 place-items-center rounded-full bg-secondary text-xs font-bold text-muted-foreground">{index === 0 ? "S" : index === 1 ? "×" : "C"}</span><span className="text-xs text-primary/65">Max</span></div>
+                <div className="flex items-center justify-between">{index === 0 ? <img src={soloLogo.url} alt="SOLO" className="size-7 rounded-full" /> : <span className="grid size-7 place-items-center rounded-full bg-secondary text-xs font-bold text-muted-foreground">{index === 1 ? "×" : "C"}</span>}<span className="text-xs text-primary/65">Max</span></div>
                 <div className="mt-4 text-sm text-muted-foreground">--</div>
               </div>
             ))}
