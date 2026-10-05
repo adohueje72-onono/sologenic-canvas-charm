@@ -105,7 +105,7 @@ function Index() {
     { name: "Sologenic Wallet", desc: "Connect using the Sologenic wallet", icon: vwSologenic },
     { name: "XRP Wallet", desc: "Connect with an XRP Ledger wallet", icon: vwXrp },
     { name: "Keplr", desc: "Connect using the Keplr browser wallet", icon: keplrReal.url },
-    { name: "Cosmostation", desc: "Connect using Cosmostation", icon: vwCosmostation },
+    { name: "Cosmostation", desc: "Connect using Cosmostation", icon: cosmostationReal.url },
     { name: "Ledger", desc: "Connect your Ledger hardware wallet", icon: ledgerLogo.url },
     { name: "MetaMask", desc: "Connect using the MetaMask EVM wallet", icon: vwMetamask },
     { name: "Coinbase Wallet", desc: "Connect using Coinbase Wallet", icon: vwCoinbase },
