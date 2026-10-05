@@ -19,7 +19,7 @@ import soloLogo from "@/assets/sologenic-logo.png.asset.json";
 import coreLogo from "@/assets/core-logo.png.asset.json";
 import xrpLogo from "@/assets/xrp-logo.png";
 import walletLedger from "@/assets/wallet-ledger.png";
-import walletDcent from "@/assets/wallet-dcent.png";
+import dcentLogo from "@/assets/dcent-logo.png.asset.json";
 import walletXaman from "@/assets/wallet-xaman.png";
 import walletCrossmark from "@/assets/wallet-crossmark.png";
 
