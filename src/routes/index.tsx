@@ -54,9 +54,9 @@ type WalletSide = "origin" | "destination";
 
 function BrandMark() {
   return (
-    <span className="flex items-center gap-2.5 font-semibold text-foreground">
+    <span className="flex shrink-0 items-center gap-2.5 font-semibold text-foreground">
       <img src={soloLogo.url} alt="Sologenic" className="size-6 rounded-full" />
-      <span>sologenic <span className="font-normal text-primary">DEX</span></span>
+      <span className="whitespace-nowrap">sologenic <span className="font-normal text-primary">DEX</span></span>
     </span>
   );
 }
@@ -147,7 +147,7 @@ function Index() {
           <BrandMark />
           <nav className="ml-6 hidden items-center gap-5 text-sm text-muted-foreground sm:flex lg:ml-10 lg:gap-8">
             {navItems.map((item) => (
-              <a key={item.label} className={`flex items-center gap-1 transition-colors hover:text-foreground ${item.active ? "text-foreground" : ""}`} href={item.href}>{item.label}{item.dropdown && <ChevronDown className="size-3" />}</a>
+              <a key={item.label} className={`flex shrink-0 items-center gap-1 whitespace-nowrap transition-colors hover:text-foreground ${item.active ? "text-foreground" : ""}`} href={item.href}>{item.label}{item.dropdown && <ChevronDown className="size-3" />}</a>
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-3">
