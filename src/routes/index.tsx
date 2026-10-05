@@ -7,6 +7,7 @@ import {
   Menu,
   Moon,
   Wallet,
+  Wifi,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -78,7 +79,7 @@ function Index() {
             <a className="flex items-center gap-1 transition-colors hover:text-foreground" href="#fiat">Fiat <ChevronDown className="size-3" /></a>
           </nav>
           <div className="ml-auto flex items-center gap-3">
-            <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <span className="ml-2 text-success">◈</span><ChevronDown className="ml-1 size-3" /></Button>
+            <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <Wifi className="ml-2 size-3.5 text-success" /><ChevronDown className="ml-1 size-3" /></Button>
             <Button onClick={() => connect("origin")} className="hidden sm:inline-flex"><Wallet className="mr-2 size-4" />Connect Wallet</Button>
             <Button variant="ghost" className="size-10 px-0" aria-label="Language"><Globe2 className="size-5" /></Button>
             <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label="Theme"><Moon className="size-5" /></Button>
