@@ -11,7 +11,7 @@ import {
   Wallet,
   Wifi,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import txLogo from "@/assets/tx-logo.png.asset.json";
 import soloLogo from "@/assets/sologenic-logo.png.asset.json";
