@@ -185,3 +185,34 @@ html.light {
   transform: perspective(320px) rotateX(62deg) rotateZ(12deg);
   mask-image: linear-gradient(to right, black, transparent 88%);
 }
+
+@keyframes bridge-travel {
+  0% {
+    left: 0%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  12% {
+    opacity: 1;
+  }
+  48% {
+    left: 100%;
+    opacity: 1;
+  }
+  60% {
+    left: 100%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  100% {
+    left: 0%;
+    opacity: 0;
+  }
+}
+
+.bridge-travel {
+  position: absolute;
+  top: 50%;
+  animation: bridge-travel 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: left, opacity;
+}
