@@ -3,7 +3,7 @@ import {
   ArrowUpRight,
   ChevronDown,
   CircleHelp,
-  Globe2,
+  Globe,
   Menu,
   Moon,
   Wallet,
@@ -81,7 +81,7 @@ function Index() {
           <div className="ml-auto flex items-center gap-3">
             <Button variant="outline" className="hidden rounded-full px-5 sm:inline-flex">Mainnet <Wifi className="ml-2 size-3.5 rotate-90 text-success" /><ChevronDown className="ml-1 size-3" /></Button>
             <Button onClick={() => connect("origin")} className="hidden sm:inline-flex"><Wallet className="mr-2 size-4" />Connect Wallet</Button>
-            <Button variant="ghost" className="size-10 px-0" aria-label="Language"><Globe2 className="size-5" /></Button>
+            <Button variant="ghost" className="size-10 px-0" aria-label="Language"><Globe className="size-5" /></Button>
             <Button variant="ghost" className="hidden size-10 px-0 sm:inline-flex" aria-label="Theme"><Moon className="size-5" /></Button>
             <Button variant="ghost" className="size-10 px-0 lg:hidden" aria-label="Menu"><Menu className="size-5" /></Button>
           </div>
